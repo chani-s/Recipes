@@ -1,12 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import {http} from './http';
+import {Recipe} from '../models/recipe';
 
-interface Recipe {
-    id: number;
-    title: string;
-    description: string;
-    // Add other fields according to the API response structure
-}
 
 const recipeService = {
     async getAllRecipes(): Promise<Recipe[]> {
