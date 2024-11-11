@@ -28,8 +28,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <header className="header">
+<<<<<<< HEAD
           <h1>המתכונים שלי</h1>
           <nav>
+=======
+          <h1 className="logo">המתכונים שלי</h1>
+          <nav className="nav">
+>>>>>>> e502f41 (add recipes cards)
             <Link className="nav-link" href="/recipes"></Link>
           </nav>
         </header>

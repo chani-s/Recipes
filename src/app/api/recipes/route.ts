@@ -1,4 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+
+>>>>>>> e502f41 (add recipes cards)
+>>>>>>> b16d9e0 (add recipes cards)
 
 
 =======

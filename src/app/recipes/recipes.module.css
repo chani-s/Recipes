@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .pageContainer {
   display: flex;
   flex-direction: row;
@@ -17,16 +18,29 @@
 .recipeContainer {
   display: flex;
   flex-direction: column;
+=======
+.recipesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 16px;
+}
+
+.recipeContainer {
+>>>>>>> e502f41 (add recipes cards)
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 16px;
   background-color: #f9f9f9;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
+<<<<<<< HEAD
   cursor: pointer;
   width: 300px;
   justify-content: center;
   align-items: center;
+=======
+>>>>>>> e502f41 (add recipes cards)
 }
 
 .recipeContainer:hover {
@@ -40,6 +54,7 @@
   margin-bottom: 8px;
 }
 
+<<<<<<< HEAD
 .recipeImage {
   width: 250px;
   height: 250px;
@@ -52,3 +67,32 @@
   width: 400px;
   margin-left: 20px;
 }
+=======
+.sectionTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #555;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.ingredientList,
+.instructionList {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.ingredientList li,
+.instructionList li {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.recipeImage {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-top: 12px;
+}
+>>>>>>> e502f41 (add recipes cards)
