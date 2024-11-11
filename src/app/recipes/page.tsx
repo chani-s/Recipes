@@ -1,4 +1,3 @@
-// page.tsx
 "use client"
 import recipeService from "../services/recipes";
 import { Recipe } from "../models/recipe"
@@ -22,12 +21,7 @@ function Page() {
         <div>
             <h1>My Recipes</h1>
             <button onClick={getRecipe}>Get Recipes</button>
-            {recipes.map(recipe => (
-                <div key={recipe.id.toString()}>
-                    <h2>{recipe.title}</h2>
-                    <p>{recipe.ingredients}</p>
-                </div>
-            ))}
+           
         </div>
     );
 }

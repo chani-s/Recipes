@@ -18,7 +18,7 @@ export async function connectDatabase() {
 }
 
 export async function getAllDocuments(client: any, collection: string) {
-  const db = client.db("Recipe");
+  const db = client.db("Recipes");
   const documents = await db.collection(collection).find().toArray();
   return documents;
 }
