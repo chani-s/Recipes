@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // page.tsx
 "use client"
 import recipeService from "../services/recipes";
@@ -7,6 +8,21 @@ import { useState } from "react";
 function Page() {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
 
+=======
+"use client"
+import recipeService from "../services/recipes";
+import {Recipe} from "../models/recipe"
+import { useEffect, useState } from "react";
+
+function Page(){
+    const [recipes, setRecipes] = useState<Recipe[]>([]);
+
+    useEffect(()=>{
+        console.log("fj")
+        getRecipe();
+      },[]);
+
+>>>>>>> b38c5ae (f)
     const getRecipe = async () => {
         try {
             const recipe = await recipeService.getAllRecipes()
@@ -17,6 +33,7 @@ function Page() {
             console.log("Error adding recipe:", error.message);
         }
     };
+<<<<<<< HEAD
 
     return (
         <div>
@@ -32,4 +49,13 @@ function Page() {
     );
 }
 
+=======
+    return(
+
+        <div>gfgrf</div>
+    )
+
+ 
+}
+>>>>>>> b38c5ae (f)
 export default Page;
