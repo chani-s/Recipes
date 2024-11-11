@@ -54,26 +54,15 @@ const Page = () => {
 =======
 >>>>>>> 89a3164 (add loading)
     return (
-        <div className={styles.pageContainer}>
-          {loading ? ( // Check if data is still loading
-            <p>LOADING...</p>
-          ) : (
-            <div className={styles.recipesGrid}>
-              {recipes.map((recipe) => (
-                <div
-                  key={recipe.id instanceof Object ? recipe.id.toString() : 'default-key'}
-                  className={styles.recipeContainer}
-                  onClick={() => openSidebar(recipe)}
-                >
-                  <h2 className={styles.recipeTitle}>{recipe.title}</h2>
-                  {recipe.image && (
-                    <img
-                      src={recipe.image}
-                      alt={recipe.title}
-                      className={styles.recipeImage}
-                    />
-                  )}
+        <div>
+            <h1>My Recipes</h1>
+            <button onClick={getRecipe}>Get Recipes</button>
+            {recipes.map(recipe => (
+                <div key={recipe.id.toString()}>
+                    <h2>{recipe.title}</h2>
+                    <p>{recipe.ingredients}</p>
                 </div>
+<<<<<<< HEAD
               ))}
             </div>
           )}
@@ -84,6 +73,9 @@ const Page = () => {
             </div>
           )}
 <<<<<<< HEAD
+=======
+            ))}
+>>>>>>> 502aa9a (layout works)
         </div>
       );
     };
