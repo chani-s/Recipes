@@ -10,4 +10,3 @@ export interface Recipe{
     ingredients: string[];
     image: string;
 }
-

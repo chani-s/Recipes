@@ -1,15 +1,10 @@
 "use client"
 import recipeService from "../services/recipes";
-import {Recipe} from "../models/recipe"
-import { useEffect, useState } from "react";
+import { Recipe } from "../models/recipe"
+import { useState } from "react";
 
-function Page(){
+function Page() {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
-
-    useEffect(()=>{
-        console.log("fj")
-        getRecipe();
-      },[]);
 
     const getRecipe = async () => {
         try {
@@ -21,11 +16,19 @@ function Page(){
             console.log("Error adding recipe:", error.message);
         }
     };
-    return(
 
-        <div>gfgrf</div>
-    )
-
- 
+    return (
+        <div>
+            <h1>My Recipes</h1>
+            <button onClick={getRecipe}>Get Recipes</button>
+            {recipes.map(recipe => (
+                <div key={recipe.id.toString()}>
+                    <h2>{recipe.title}</h2>
+                    <p>{recipe.ingredients}</p>
+                </div>
+            ))}
+        </div>
+    );
 }
+
 export default Page;
