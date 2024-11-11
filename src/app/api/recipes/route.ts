@@ -18,6 +18,7 @@ export async function GET() {
   try {
     const client = await connectDatabase();
     const recipes = await getAllDocuments(client, 'Recipe');
+    console.log(recipes)
     await client.close();
     return NextResponse.json(recipes);
   } catch (error) {
