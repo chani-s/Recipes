@@ -1,9 +1,11 @@
+//recipes/page.tsx
 "use client"
 import recipeService from "../services/recipes";
 import { Recipe } from "../../models/recipe";
 import { useEffect, useState } from "react";
 import styles from './recipes.module.css';
 import PageSidebar from "../PageSidebar/PageSidebar";
+
 
 const Page = () => {
 
@@ -77,4 +79,8 @@ const Page = () => {
 };
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> a8ffd89 (try to fix vercel)
 export default Page;
