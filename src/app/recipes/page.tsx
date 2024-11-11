@@ -41,7 +41,7 @@ const Page = () => {
     return (
         <div className={styles.pageContainer}>
           {loading ? ( // Check if data is still loading
-            <p>LOADING...</p>
+            <p className={styles.loader}>LOADING...</p>
           ) : (
             <div className={styles.recipesGrid}>
               {recipes.map((recipe) => (

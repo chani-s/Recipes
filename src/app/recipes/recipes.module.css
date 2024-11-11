@@ -1,9 +1,12 @@
 .pageContainer {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start; /* או space-between או space-evenly, לפי הצורך */
-  align-items: flex-start;
+  /* justify-content: flex-start; 
+  align-items: flex-start; */
   padding: 16px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .recipesGrid {
@@ -51,4 +54,28 @@
 .sidebar {
   width: 400px;
   margin-left: 20px;
+}
+
+/* .loaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+} */
+
+/* עיצוב למעגל הטעינה */
+.loader {
+  font-size: smaller;
+  border: 8px solid #f3f3f3; /* רקע בהיר */
+  border-top: 8px solid #3498db; /* צבע קידמי של הטעינה */
+  border-radius: 50%; /* עיגול מושלם */
+  width: 50px; /* רוחב המעגל */
+  height: 50px; /* גובה המעגל */
+  animation: spin 1s linear infinite; /* אנימציה אינסופית */
+}
+
+/* הגדרת האנימציה */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
