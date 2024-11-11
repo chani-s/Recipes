@@ -1,86 +1,54 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> e502f41 (add recipes cards)
-// page.tsx
 "use client"
 import recipeService from "../services/recipes";
-import { Recipe } from "../models/recipe"
+import { Recipe } from "../models/recipe";
 import { useEffect, useState } from "react";
-import styles from './recipes.module.css'
+import styles from './recipes.module.css';
+import PageSidebar from "../showRecipe/page";
 
-
-function Page() {
+const Page = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
+    const [selectedRecipe, setSelectedRecipe] = useState<Recipe | undefined>(undefined);
+    const [loading, setLoading] = useState(true); // New loading state
 
-<<<<<<< HEAD
-=======
-"use client"
-import recipeService from "../services/recipes";
-import {Recipe} from "../models/recipe"
-import { useEffect, useState } from "react";
-
-function Page(){
-    const [recipes, setRecipes] = useState<Recipe[]>([]);
-
-    useEffect(()=>{
-        console.log("fj")
-        getRecipe();
-      },[]);
-
->>>>>>> b38c5ae (f)
-    const getRecipe = async () => {
-=======
     const getRecipes = async () => {
->>>>>>> e502f41 (add recipes cards)
         try {
             const recipesData = await recipeService.getAllRecipes();
             setRecipes(recipesData);
-            console.log("Fetched recipes:", recipesData); // Log the fetched data directly
+            console.log("Fetched recipes:", recipesData);
         } catch (error: any) {
             console.log("Error fetching recipes:", error.message);
         }
+        finally {
+            setLoading(false); // Set loading to false once data is fetched or an error occurs
+        }
     };
-<<<<<<< HEAD
-
 
     useEffect(() => {
-        getRecipes(); // Fetch recipes when the component mounts
+        getRecipes();
     }, []);
 
+    const openSidebar = (recipe: Recipe) => {
+        console.log("in click");
+        setSelectedRecipe(recipe);
+    };
+
+    const closeSidebar = () => {
+        setSelectedRecipe(undefined);
+    };
+
     return (
-        <div>
-          <h1>Recipes</h1>
-          {recipes.length === 0 ? (
-            <p>No recipes found.</p>
+        <div className={styles.pageContainer}>
+          {loading ? ( // Check if data is still loading
+            <p>LOADING...</p>
           ) : (
             <div className={styles.recipesGrid}>
               {recipes.map((recipe) => (
                 <div
-                  key={
-                    recipe.id instanceof Object ? recipe.id.toString() : 'default-key'
-                  }
+                  key={recipe.id instanceof Object ? recipe.id.toString() : 'default-key'}
                   className={styles.recipeContainer}
+                  onClick={() => openSidebar(recipe)}
                 >
                   <h2 className={styles.recipeTitle}>{recipe.title}</h2>
-    
-                  {/* Display Ingredients */}
-                  <h3 className={styles.sectionTitle}>רכיבים:</h3>
-                  <ul className={styles.ingredientList}>
-                    {recipe.ingredients.map((ingredient, index) => (
-                      <li key={index}>{ingredient}</li>
-                    ))}
-                  </ul>
-    
-                  {/* Display Instructions */}
-                  <h3 className={styles.sectionTitle}>הוראות הכנה:</h3>
-                  <ol className={styles.instructionList}>
-                    {recipe.instructions.map((instruction, index) => (
-                      <li key={index}>{instruction}</li>
-                    ))}
-                  </ol>
-    
-                  {/* Display Image (if it exists) */}
                   {recipe.image && (
                     <img
                       src={recipe.image}
@@ -92,70 +60,15 @@ function Page(){
               ))}
             </div>
           )}
+    
+          {selectedRecipe && (
+            <div className={styles.sidebar}>
+              <PageSidebar recipe={selectedRecipe} onClose={closeSidebar} />
+            </div>
+          )}
         </div>
       );
+    };
 
-    // return (
-    //     <div>
-    //       <h1>Recipes</h1>
-    //       {recipes.length === 0 ? (
-    //         <p>No recipes found.</p>
-    //       ) : (
-    //         <ul>
-    //           {recipes.map((recipe) => (
-    //             <li
-    //               key={
-    //                 recipe.id instanceof Object ? recipe.id.toString() : 'default-key'
-    //               }
-    //               className={styles.recipeContainer}
-    //             >
-    //               <h2 className={styles.recipeTitle}>{recipe.title}</h2>
     
-    //               {/* Display Ingredients */}
-    //               <h3 className={styles.sectionTitle}>רכיבים:</h3>
-    //               <ul className={styles.ingredientList}>
-    //                 {recipe.ingredients.map((ingredient, index) => (
-    //                   <li key={index}>{ingredient}</li>
-    //                 ))}
-    //               </ul>
-    
-    //               {/* Display Instructions */}
-    //               <h3 className={styles.sectionTitle}>הוראות הכנה:</h3>
-    //               <ol className={styles.instructionList}>
-    //                 {recipe.instructions.map((instruction, index) => (
-    //                   <li key={index}>{instruction}</li>
-    //                 ))}
-    //               </ol>
-    
-    //               {/* Display Image (if it exists) */}
-    //               {recipe.image && (
-    //                 <img
-    //                   src={recipe.image}
-    //                   alt={recipe.title}
-    //                   className={styles.recipeImage}
-    //                 />
-    //               )}
-    //             </li>
-    //           ))}
-    //         </ul>
-    //       )}
-    //     </div>
-    //   );
-
-}
-
-<<<<<<< HEAD
-=======
-    return(
-
-        <div>gfgrf</div>
-    )
-
- 
-}
->>>>>>> b38c5ae (f)
 export default Page;
-=======
-export default Page;
-
->>>>>>> e502f41 (add recipes cards)
