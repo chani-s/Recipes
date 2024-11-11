@@ -27,15 +27,23 @@ const Page = () => {
         getRecipes();
     }, []);
 
+<<<<<<< HEAD
     const openSidebar = (recipe: Recipe) => {
         console.log("in click");
         setSelectedRecipe(recipe);
     };
+=======
+  const openSidebar = (recipe: Recipe) => {
+    console.log("in click");
+    setSelectedRecipe(recipe);
+  };
+>>>>>>> c0b6b7f (set recipes grid style)
 
     const closeSidebar = () => {
         setSelectedRecipe(undefined);
     };
 
+<<<<<<< HEAD
     return (
         <div className={styles.pageContainer}>
           {loading ? ( // Check if data is still loading
@@ -71,4 +79,36 @@ const Page = () => {
     };
 
     
+=======
+  return (
+    <div className={styles.pageContainer}>
+      <div className={styles.recipesGrid}>
+        {recipes.map((recipe) => (
+          <div
+            key={recipe.id instanceof Object ? recipe.id.toString() : 'default-key'}
+            className={styles.recipeContainer}
+            onClick={() => openSidebar(recipe)}
+          >
+            <h2 className={styles.recipeTitle}>{recipe.title}</h2>
+            {recipe.image && (
+              <img
+                src={recipe.image}
+                alt={recipe.title}
+                className={styles.recipeImage}
+              />
+            )}
+          </div>
+        ))}
+      </div>
+
+      {selectedRecipe && (
+        <div className={styles.sidebar}>
+          <PageSidebar recipe={selectedRecipe} onClose={closeSidebar} />
+        </div>
+      )}
+    </div>
+  );
+};
+
+>>>>>>> c0b6b7f (set recipes grid style)
 export default Page;
