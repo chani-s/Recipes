@@ -28,10 +28,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <header className="header">
-          <h1 className="logo">My Recipes</h1>
+          <h1 className="logo">המתכונים שלי</h1>
           <nav className="nav">
-            <Link className="nav-link" href="/">Home</Link>
-            <Link className="nav-link" href="/recipes">Recipes</Link>
+            <Link className="nav-link" href="/recipes"></Link>
           </nav>
         </header>
         <main>{children}</main> {/* This renders each page's content */}
