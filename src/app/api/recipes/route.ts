@@ -1,10 +1,28 @@
-import { NextResponse } from "next/server";
-import { getAllDocuments, connectDatabase, insertDocument } from "../../services/mongo";
+// // route.ts
+// import { NextResponse } from "next/server";
+// import { getAllDocuments, connectDatabase, insertDocument } from "../../services/mongo";
 
-export async function GET(request : Request){
+// export async function GET(request : Request){
+//     const client = await connectDatabase();
+//     const recipes = await getAllDocuments(client, 'Recipe');
+//     await client.close();
+//     console.log(recipes);
+//     return NextResponse.json(recipes);
+// }
+
+
+import { NextResponse } from "next/server";
+import { connectDatabase, getAllDocuments } from "../../services/mongo";
+
+export async function GET() {
+  try {
     const client = await connectDatabase();
-    const cars = await getAllDocuments(client, 'Recipe');
+    const recipes = await getAllDocuments(client, 'Recipe');
     await client.close();
-    console.log(cars);
-    return NextResponse.json(cars);
+    return NextResponse.json(recipes);
+  } catch (error) {
+    console.error("Error fetching recipes:", error);
+    return NextResponse.error();
+  }
 }
+
