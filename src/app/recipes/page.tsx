@@ -1,9 +1,11 @@
+//recipes/page.tsx
 "use client"
 import recipeService from "../services/recipes";
 import { Recipe } from "../models/recipe";
 import { useEffect, useState } from "react";
 import styles from './recipes.module.css';
 import PageSidebar from "../showRecipe/page";
+
 
 const Page = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -70,5 +72,5 @@ const Page = () => {
       );
     };
 
-    
+
 export default Page;
