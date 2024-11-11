@@ -1,10 +1,9 @@
 "use client"
 import recipeService from "../services/recipes";
-import { Recipe } from "../models/recipe"
+import { Recipe } from "../models/recipe";
 import { useEffect, useState } from "react";
-import styles from './recipes.module.css'
+import styles from './recipes.module.css';
 import PageSidebar from "../showRecipe/page";
-
 
 const Page = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -25,7 +24,7 @@ const Page = () => {
   }, []);
 
   const openSidebar = (recipe: Recipe) => {
-    console.log("in click")
+    console.log("in click");
     setSelectedRecipe(recipe);
   };
 
@@ -34,106 +33,33 @@ const Page = () => {
   };
 
   return (
-    <div>
-      <h1>Recipes</h1>
-      {recipes.length === 0 ? (
-        <p>No recipes found.</p>
-      ) : (
-        <div className={styles.recipesGrid}>
-          {recipes.map((recipe) => (
-            <div
-               // Assuming _id is a unique identifier
-              className={styles.recipeContainer}
-              onClick={() => openSidebar(recipe)} // Open sidebar with recipe details on click
-            >
-              <h2 className={styles.recipeTitle}>{recipe.title}</h2>
+    <div className={styles.pageContainer}>
+      <div className={styles.recipesGrid}>
+        {recipes.map((recipe) => (
+          <div
+            key={recipe.id instanceof Object ? recipe.id.toString() : 'default-key'}
+            className={styles.recipeContainer}
+            onClick={() => openSidebar(recipe)}
+          >
+            <h2 className={styles.recipeTitle}>{recipe.title}</h2>
+            {recipe.image && (
+              <img
+                src={recipe.image}
+                alt={recipe.title}
+                className={styles.recipeImage}
+              />
+            )}
+          </div>
+        ))}
+      </div>
 
-              {/* Display Ingredients */}
-              <h3 className={styles.sectionTitle}>רכיבים:</h3>
-              <ul className={styles.ingredientList}>
-                {recipe.ingredients.map((ingredient, index) => (
-                  <li key={index}>{ingredient}</li>
-                ))}
-              </ul>
-
-              {/* Display Instructions */}
-              <h3 className={styles.sectionTitle}>הוראות הכנה:</h3>
-              <ol className={styles.instructionList}>
-                {recipe.instructions.map((instruction, index) => (
-                  <li key={index}>{instruction}</li>
-                ))}
-              </ol>
-
-              {/* Display Image (if it exists) */}
-              {recipe.image && (
-                <img
-                  src={recipe.image}
-                  alt={recipe.title}
-                  className={styles.recipeImage}
-                />
-              )}
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* Render Sidebar if a recipe is selected */}
       {selectedRecipe && (
-        <PageSidebar recipe={selectedRecipe} onClose={closeSidebar} />
+        <div className={styles.sidebar}>
+          <PageSidebar recipe={selectedRecipe} onClose={closeSidebar} />
+        </div>
       )}
     </div>
   );
 };
 
-
-    // return (
-    //     <div>
-    //       <h1>Recipes</h1>
-    //       {recipes.length === 0 ? (
-    //         <p>No recipes found.</p>
-    //       ) : (
-    //         <ul>
-    //           {recipes.map((recipe) => (
-    //             <li
-    //               key={
-    //                 recipe.id instanceof Object ? recipe.id.toString() : 'default-key'
-    //               }
-    //               className={styles.recipeContainer}
-    //             >
-    //               <h2 className={styles.recipeTitle}>{recipe.title}</h2>
-    
-    //               {/* Display Ingredients */}
-    //               <h3 className={styles.sectionTitle}>רכיבים:</h3>
-    //               <ul className={styles.ingredientList}>
-    //                 {recipe.ingredients.map((ingredient, index) => (
-    //                   <li key={index}>{ingredient}</li>
-    //                 ))}
-    //               </ul>
-    
-    //               {/* Display Instructions */}
-    //               <h3 className={styles.sectionTitle}>הוראות הכנה:</h3>
-    //               <ol className={styles.instructionList}>
-    //                 {recipe.instructions.map((instruction, index) => (
-    //                   <li key={index}>{instruction}</li>
-    //                 ))}
-    //               </ol>
-    
-    //               {/* Display Image (if it exists) */}
-    //               {recipe.image && (
-    //                 <img
-    //                   src={recipe.image}
-    //                   alt={recipe.title}
-    //                   className={styles.recipeImage}
-    //                 />
-    //               )}
-    //             </li>
-    //           ))}
-    //         </ul>
-    //       )}
-    //     </div>
-    //   );
-
-
-
 export default Page;
-
