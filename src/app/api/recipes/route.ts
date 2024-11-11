@@ -1,14 +1,4 @@
-// // route.ts
-// import { NextResponse } from "next/server";
-// import { getAllDocuments, connectDatabase, insertDocument } from "../../services/mongo";
 
-// export async function GET(request : Request){
-//     const client = await connectDatabase();
-//     const recipes = await getAllDocuments(client, 'Recipe');
-//     await client.close();
-//     console.log(recipes);
-//     return NextResponse.json(recipes);
-// }
 import { NextResponse } from "next/server";
 import { connectDatabase, getAllDocuments } from "../../services/mongo";
 
