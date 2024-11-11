@@ -28,6 +28,7 @@ const Page = () => {
     }
   };
 
+<<<<<<< HEAD
   useEffect(() => {
     getRecipes();
   }, []);
@@ -62,6 +63,30 @@ const Page = () => {
                   className={styles.recipeImage}
                 />
               )}
+=======
+    return (
+        <div className={styles.pageContainer}>
+          {loading ? ( // Check if data is still loading
+            <p className={styles.loader}>LOADING...</p>
+          ) : (
+            <div className={styles.recipesGrid}>
+              {recipes.map((recipe) => (
+                <div
+                  key={recipe.id instanceof Object ? recipe.id.toString() : 'default-key'}
+                  className={styles.recipeContainer}
+                  onClick={() => openSidebar(recipe)}
+                >
+                  <h2 className={styles.recipeTitle}>{recipe.title}</h2>
+                  {recipe.image && (
+                    <img
+                      src={recipe.image}
+                      alt={recipe.title}
+                      className={styles.recipeImage}
+                    />
+                  )}
+                </div>
+              ))}
+>>>>>>> c91ea23 (loading style)
             </div>
 
           ))}
