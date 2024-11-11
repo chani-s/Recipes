@@ -1,0 +1,88 @@
+/* Sidebar container */
+.sidebar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #F1F1F1; /* Light gray background */
+    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    padding: 20px;
+    overflow-y: auto;
+    direction: rtl; /* Right-to-left layout */
+    z-index: 1000;
+}
+
+/* Open sidebar transition */
+.sidebarOpen {
+    transform: translateX(0);
+}
+
+/* Close button */
+.closeButton {
+    background: #F95454; /* Red color */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+/* Title styles */
+.title {
+    color: #0D92F4; /* Blue color */
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Recipe image styles */
+.recipeImage {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Title Styles */
+.sectionTitle {
+    color: #C62E2E; /* Dark Red color */
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Ingredients and Instructions list */
+.ingredientList, .instructionList {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.ingredientList li, .instructionList li {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 16px;
+}
+
+/* Hover effect for list items */
+.ingredientList li:hover, .instructionList li:hover {
+    color: #0D92F4;
+    cursor: pointer;
+}
+
+/* Add spacing for general items */
+.recipeContent ul, .recipeContent ol {
+    margin-top: 10px;
+}
+
+/* Styling for the sidebar content */
+.sidebar .sectionTitle,
+.sidebar ul,
+.sidebar ol {
+    padding-right: 10px; /* Adjust for RTL padding */
+}
