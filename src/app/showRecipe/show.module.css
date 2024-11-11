@@ -3,7 +3,7 @@
     position: fixed;
     right: 0;
     top: 0;
-    width: 300px;
+    width: 370px;
     height: 100%;
     background-color: #F1F1F1; /* Light gray background */
     box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.2);
@@ -54,12 +54,14 @@
     color: #C62E2E; /* Dark Red color */
     font-size: 18px;
     font-weight: bold;
-    margin-top: 20px;
+    margin: 15px;
+    margin-right: 0;
 }
+
 
 /* Ingredients and Instructions list */
 .ingredientList, .instructionList {
-    list-style-type: none;
+    /* list-style-type: none; */
     padding-left: 0;
 }
 

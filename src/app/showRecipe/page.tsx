@@ -27,3 +27,4 @@ const PageSidebar = ({ recipe, onClose }: { recipe: Recipe | null; onClose: () =
 };
 
 export default PageSidebar;
+
