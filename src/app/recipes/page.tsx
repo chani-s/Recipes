@@ -28,22 +28,31 @@ const Page = () => {
     }, []);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 89a3164 (add loading)
     const openSidebar = (recipe: Recipe) => {
         console.log("in click");
         setSelectedRecipe(recipe);
     };
+<<<<<<< HEAD
 =======
   const openSidebar = (recipe: Recipe) => {
     console.log("in click");
     setSelectedRecipe(recipe);
   };
 >>>>>>> c0b6b7f (set recipes grid style)
+=======
+>>>>>>> 89a3164 (add loading)
 
     const closeSidebar = () => {
         setSelectedRecipe(undefined);
     };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 89a3164 (add loading)
     return (
         <div className={styles.pageContainer}>
           {loading ? ( // Check if data is still loading
@@ -74,6 +83,7 @@ const Page = () => {
               <PageSidebar recipe={selectedRecipe} onClose={closeSidebar} />
             </div>
           )}
+<<<<<<< HEAD
         </div>
       );
     };
@@ -104,11 +114,15 @@ const Page = () => {
       {selectedRecipe && (
         <div className={styles.sidebar}>
           <PageSidebar recipe={selectedRecipe} onClose={closeSidebar} />
+=======
+>>>>>>> 89a3164 (add loading)
         </div>
-      )}
-    </div>
-  );
-};
+      );
+    };
 
+<<<<<<< HEAD
 >>>>>>> c0b6b7f (set recipes grid style)
+=======
+    
+>>>>>>> 89a3164 (add loading)
 export default Page;
