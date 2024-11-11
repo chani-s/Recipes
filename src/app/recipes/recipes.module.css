@@ -1,16 +1,17 @@
 .pageContainer {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start; /* או space-between או space-evenly, לפי הצורך */
   align-items: flex-start;
   padding: 16px;
 }
 
 .recipesGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(200px, 1fr)); /* השתמש ב-grid כדי לאפשר רווחים בין המתכונים */
   gap: 30px;
   flex: 1;
-  /* This allows the grid to take up the remaining space */
+  
 }
 
 .recipeContainer {
@@ -48,6 +49,6 @@
 
 /* Styling for the sidebar to be fixed or adaptive */
 .sidebar {
-  width: 300px;
+  width: 400px;
   margin-left: 20px;
 }
