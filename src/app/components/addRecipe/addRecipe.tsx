@@ -11,7 +11,7 @@ interface AddRecipeFormProps {
 const AddRecipeForm = ({ onAddRecipe, onClose }: AddRecipeFormProps) => {
   const [newRecipe, setNewRecipe] = useState<Partial<Recipe>>({
     title: "",
-    category: "",
+    catergory: "",
     instructions: [],
     ingredients: [],
     image: "",
@@ -32,7 +32,7 @@ const AddRecipeForm = ({ onAddRecipe, onClose }: AddRecipeFormProps) => {
     onAddRecipe(newRecipe as Recipe);
     setNewRecipe({
       title: "",
-      category: "",
+      catergory: "",
       instructions: [],
       ingredients: [],
       image: "",
@@ -58,7 +58,7 @@ const AddRecipeForm = ({ onAddRecipe, onClose }: AddRecipeFormProps) => {
         type="text"
         name="category"
         placeholder="Category"
-        value={newRecipe.category || ""}
+        value={newRecipe.catergory || ""}
         onChange={handleChange}
         className={styles.inputField}
       />
