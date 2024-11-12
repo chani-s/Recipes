@@ -6,9 +6,12 @@ import styles from './recipes.module.css';
 import PageSidebar from "../PageSidebar/PageSidebar";
 
 const Page = () => {
+
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | undefined>(undefined);
   const [loading, setLoading] = useState(true); // New loading state
+
+
 
   const getRecipes = async () => {
     try {
@@ -36,6 +39,7 @@ const Page = () => {
     setSelectedRecipe(undefined);
   };
 
+
   return (
     <div className={styles.pageContainer}>
       {loading ? ( // Check if data is still loading
@@ -57,6 +61,7 @@ const Page = () => {
                 />
               )}
             </div>
+
           ))}
         </div>
       )}
@@ -64,6 +69,7 @@ const Page = () => {
       {selectedRecipe && (
         <div className={styles.sidebar}>
           <PageSidebar recipe={selectedRecipe} onClose={closeSidebar} />
+
         </div>
       )}
     </div>
