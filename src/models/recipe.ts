@@ -4,9 +4,9 @@
 import { ObjectId } from "mongodb";
 
 export interface Recipe{
-    id: ObjectId;
+    _id: ObjectId;
     title: string;
-    category: string;
+    catergory: string;
     instructions: string[];
     ingredients: string[];
     image: string;
