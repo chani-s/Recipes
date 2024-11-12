@@ -27,8 +27,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <header className="header">
-          <h1>המתכונים שלי</h1>
-          
+        <h1>המתכונים שלי</h1>
+
         </header>
         <main>{children}</main> {/* This renders each page's content */}
       </body>
