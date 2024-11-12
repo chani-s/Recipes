@@ -3,7 +3,7 @@ import recipeService from "../services/recipes";
 import { Recipe } from "../../models/recipe";
 import { useEffect, useState } from "react";
 import styles from './recipes.module.css';
-import PageSidebar from "../showRecipe/page";
+import PageSidebar from "../PageSidebar/PageSidebar";
 
 const Page = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
