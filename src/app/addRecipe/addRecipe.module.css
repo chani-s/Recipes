@@ -1,0 +1,70 @@
+/* Modal background */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);  /* Dark background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal container */
+.modalContent {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-out;
+  overflow-y: auto;
+}
+
+/* Close button */
+.closeButton {
+  background: #F95454;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  display: block;
+  margin-bottom: 20px;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* Form fields */
+.inputField,
+.textAreaField {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.inputField:focus,
+.textAreaField:focus {
+  outline: none;
+  border-color: #0D92F4;
+}
+
+/* Submit button */
+.submitButton {
+  background-color: #0D92F4;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.submitButton:hover {
+  background-color: #77CDFF;
+}
