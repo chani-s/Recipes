@@ -1,7 +1,7 @@
 // AddRecipeForm.tsx
 import React, { useState } from "react";
 import { Recipe } from "../../../models/recipe";
-import styles from "./AddRecipe.module.css";
+import styles from "./addRecipe.module.css";
 
 interface AddRecipeFormProps {
   onAddRecipe: (newRecipe: Recipe) => void;
