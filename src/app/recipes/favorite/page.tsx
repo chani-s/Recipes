@@ -1,29 +1,28 @@
 "use client"
-import recipeService from "../services/recipes";
-import { saveToStorage, getFromStorage } from '../services/localStorage'
-import { Recipe } from "../../models/recipe";
-import { Favorite } from "../../models/favorite";
+import {getFromStorage} from '../../services/localStorage'
+import { Recipe } from "../../../models/recipe";
+import { Favorite } from "@/models/favorite";
 import { useEffect, useState } from "react";
-import styles from './recipes.module.css';
-import RecipeCard from "../components/RecipeCard/RecipeCard";
+import styles from '../recipes.module.css';
+import RecipeCard from "../../components/RecipeCard/RecipeCard";
 
 const Page = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
     const [loading, setLoading] = useState(true);
     const getRecipes = async () => {
         try {
-            const recipesData = await recipeService.getAllRecipes();
-            saveToStorage("recipes", recipesData);
-            const favoriteRecipes = getFromStorage<Favorite>("favorite");
-            if (!favoriteRecipes) {
-                const favoriteRecipsArr = recipesData.map(obj => ({
-                    _id: obj._id,
-                    isFavorite: false
-                }));
-                saveToStorage("favorite", favoriteRecipsArr);
+            const favoriteRecipes=getFromStorage<Favorite>("favorite");
+            const recipes = getFromStorage<Recipe>("recipes");
+            if(favoriteRecipes&&recipes){
+                const favoriteRecipesFilter=favoriteRecipes.filter(recipe => recipe.isFavorite==true);
+                const filteredArray = recipes.filter(obj2 => 
+                    favoriteRecipesFilter.some(obj1 => obj1._id === obj2._id));
+                setRecipes(filteredArray);
             }
-            setRecipes(recipesData);
-            console.log("Fetched recipes:", recipesData);
+            else{
+                setRecipes([]);
+            }
+            
         } catch (error: any) {
             console.log("Error fetching recipes:", error.message);
         }
@@ -34,6 +33,7 @@ const Page = () => {
     useEffect(() => {
         getRecipes();
     }, []);
+
 
 
     return (
