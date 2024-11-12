@@ -7,7 +7,8 @@ import PageSidebar from "../showRecipe/page";
 
 const Page = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
-    const [selectedRecipe, setSelectedRecipe] = useState<Recipe | undefined>(undefined);
+    const [selectedRecipe, setSelectedRecipe] = useState<Recipe>();
+    const [sidebarOpen, setSidebarOpen] = useState(false); // New sidebar state
     const [loading, setLoading] = useState(true); // New loading state
 
     const getRecipes = async () => {
@@ -29,11 +30,14 @@ const Page = () => {
 
     const openSidebar = (recipe: Recipe) => {
         console.log("in click");
-        setSelectedRecipe(recipe);
+        setSidebarOpen(false); 
+        setSelectedRecipe(recipe);  
+
     };
 
     const closeSidebar = () => {
-        setSelectedRecipe(undefined);
+        setSidebarOpen(false); 
+    
     };
 
     return (
@@ -61,7 +65,7 @@ const Page = () => {
             </div>
           )}
     
-          {selectedRecipe && (
+          {( typeof selectedRecipe === "object") && (
             <div className={styles.sidebar}>
               <PageSidebar recipe={selectedRecipe} onClose={closeSidebar} />
             </div>
