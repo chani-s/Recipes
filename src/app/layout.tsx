@@ -30,7 +30,7 @@ export default function RootLayout({
         <h1>המתכונים שלי</h1>
 
         </header>
-        <main>{children}</main> {/* This renders each page's content */}
+        <main>{children}</main>
       </body>
     </html>
   );

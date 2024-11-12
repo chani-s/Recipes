@@ -32,7 +32,6 @@ const RecipeCard = ({recipe, index}: CardProps) => {
               className={styles.recipeContainer}
               onClick={() => openSidebar(recipe)}
             >
-              <h2 className={styles.recipeTitle}>{recipe.title}</h2>
               {recipe.image && (
                 <img
                   src={recipe.image}
@@ -40,6 +39,8 @@ const RecipeCard = ({recipe, index}: CardProps) => {
                   className={styles.recipeImage}
                 />
               )}
+                            <h2 className={styles.recipeTitle}>{recipe.title}</h2>
+
             </div>
           {selectedRecipe && (
                 <div className={styles.sidebar}>
