@@ -22,3 +22,10 @@ export async function getAllDocuments(client: any, collection: string) {
   const documents = await db.collection(collection).find().toArray();
   return documents;
 }
+export async function insertDocument(client: MongoClient, collection: string, document: object) {
+  const db = client.db("Recipes");
+  const result = await db.collection(collection).insertOne(document);
+  console.log("the result"+result.toString());
+  const insertedDocument = await db.collection(collection).findOne({ _id: result.insertedId });
+  return insertedDocument;
+}

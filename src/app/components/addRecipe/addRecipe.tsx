@@ -1,7 +1,7 @@
 // AddRecipeForm.tsx
-import React, { useState } from 'react';
-import { Recipe } from "../../models/recipe";
-import styles from './AddRecipe.module.css';
+import React, { useState } from "react";
+import { Recipe } from "../../../models/recipe";
+import styles from "./AddRecipe.module.css";
 
 interface AddRecipeFormProps {
   onAddRecipe: (newRecipe: Recipe) => void;
@@ -14,10 +14,12 @@ const AddRecipeForm = ({ onAddRecipe, onClose }: AddRecipeFormProps) => {
     category: "",
     instructions: [],
     ingredients: [],
-    image: ""
+    image: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     if (name === "instructions" || name === "ingredients") {
       setNewRecipe({ ...newRecipe, [name]: value.split("\n") });
@@ -28,13 +30,21 @@ const AddRecipeForm = ({ onAddRecipe, onClose }: AddRecipeFormProps) => {
 
   const handleAdd = () => {
     onAddRecipe(newRecipe as Recipe);
-    setNewRecipe({ title: "", category: "", instructions: [], ingredients: [], image: "" });
+    setNewRecipe({
+      title: "",
+      category: "",
+      instructions: [],
+      ingredients: [],
+      image: "",
+    });
     onClose();
   };
 
   return (
     <div className={`${styles.formContainer} ${styles.formOpen}`}>
-      <button onClick={onClose} className={styles.closeButton}>Close</button>
+      <button onClick={onClose} className={styles.closeButton}>
+        Close
+      </button>
       <h2 className={styles.title}>Add New Recipe</h2>
       <input
         type="text"
@@ -74,7 +84,9 @@ const AddRecipeForm = ({ onAddRecipe, onClose }: AddRecipeFormProps) => {
         onChange={handleChange}
         className={styles.inputField}
       />
-      <button onClick={handleAdd} className={styles.saveButton}>Save Recipe</button>
+      <button onClick={handleAdd} className={styles.saveButton}>
+        Save Recipe
+      </button>
     </div>
   );
 };
