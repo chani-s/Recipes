@@ -1,8 +1,6 @@
 .pageContainer {
   display: flex;
   flex-direction: row;
-  /* justify-content: flex-start; 
-  align-items: flex-start; */
   padding: 16px;
   justify-content: center;
   align-items: center;
@@ -11,7 +9,7 @@
 
 .recipesGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(200px, 1fr)); /* השתמש ב-grid כדי לאפשר רווחים בין המתכונים */
+  grid-template-columns: repeat(3, minmax(200px, 1fr)); 
   gap: 30px;
   flex: 1;
   

@@ -62,12 +62,6 @@ const Page = () => {
                             <p>No recipes found for this category.</p>
                         )}
                     </div>
-                    // <div className={styles.recipesGrid}>
-                    //     {recipes.map((recipe, index) => (
-                    //         <RecipeCard recipe={recipe} index={index} />
-                    //     ))}
-                    // </div>
-
                 )}
 
             </div>
