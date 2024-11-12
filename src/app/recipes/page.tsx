@@ -1,34 +1,36 @@
-"use client"
+"use client";
+import { useEffect, useState } from "react";
 import recipeService from "../services/recipes";
 import { Recipe } from "../../models/recipe";
-import { useEffect, useState } from "react";
-import styles from './recipes.module.css';
+import styles from "./recipes.module.css";
 import RecipeCard from "../components/RecipeCard/RecipeCard";
 import CategoryPicker from "../components/CategoryPicker/CategoryPicker";
 
+import AddRecipeForm from "../components/addRecipe/addRecipe"; // Import AddRecipeForm
 
 const Page = () => {
-    const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
     const [filteredRecipes, setFilteredRecipes] = useState<Recipe[]>([]);  // For filtered recipes
-    const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState<string>("");  // Track selected category
 
     const categories = ["מנות ראשונות", "מנות עיקריות", "קינוחים", "עוגיות", "תוספות"];  // Example categories
 
 
-    const getRecipes = async () => {
-        try {
-            const recipesData = await recipeService.getAllRecipes();
-            setRecipes(recipesData);
+  const [isFormOpen, setIsFormOpen] = useState(false); // State to control form visibility
+
+  const getRecipes = async () => {
+    try {
+      const recipesData = await recipeService.getAllRecipes();
+      setRecipes(recipesData);
             setFilteredRecipes(recipesData);  // Initially show all recipes
-            console.log("Fetched recipes:", recipesData);
-        } catch (error: any) {
-            console.log("Error fetching recipes:", error.message);
-        }
-        finally {
-            setLoading(false);
-        }
-    };
+      console.log("Fetched recipes:", recipesData);
+    } catch (error: any) {
+      console.log("Error fetching recipes:", error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
     const handleCategorySelect = (category: string) => {
         setSelectedCategory(category);
@@ -40,36 +42,57 @@ const Page = () => {
         }
     };
 
-    useEffect(() => {
-        getRecipes();
-    }, []);
 
+  useEffect(() => {
+    getRecipes();
+  }, []);
 
-    return (
-        <div>
-            <CategoryPicker categories={categories} onCategorySelect={handleCategorySelect} />
+  const handleOpenForm = () => setIsFormOpen(true);
+  const handleCloseForm = () => setIsFormOpen(false);
 
-            <div className={styles.pageContainer}>
-                {loading ? (
-                    <p>LOADING...</p>
-                ) : (
-                    <div className={styles.recipesGrid}>
-                        {filteredRecipes.length > 0 ? (
-                            filteredRecipes.map((recipe, index) => (
-                                <RecipeCard recipe={recipe} index={index} key={index} />
-                            ))
-                        ) : (
-                            <p>No recipes found for this category.</p>
-                        )}
-                    </div>
-                )}
+  const handleAddRecipe = async (newRecipe: Recipe) => {
+    const nesDoc= await recipeService.addRecipe(newRecipe);
+    const recipesData = await recipeService.getAllRecipes();
+    console.log("New Recipe added:", nesDoc);
+    console.log(recipesData)
+    setRecipes(recipesData);
+    handleCloseForm(); // Close the form after adding
+  };
 
-            </div>
+  return (
+    <div className={styles.pageContainer}>
+      {/* Category Picker */}
+      <CategoryPicker categories={categories} onCategorySelect={handleCategorySelect} />
+
+      {/* Button to open the Add Recipe form */}
+      <button onClick={handleOpenForm} className={styles.addButton}>
+        Add Recipe
+      </button>
+
+      {/* AddRecipeForm displayed as a sidebar */}
+      {isFormOpen && (
+        <AddRecipeForm
+          onAddRecipe={handleAddRecipe}
+          onClose={handleCloseForm}
+        />
+      )}
+
+      {/* Loading or recipe grid */}
+      {loading ? (
+        <p>LOADING...</p>
+      ) : (
+        <div className={styles.recipesGrid}>
+          {filteredRecipes.length > 0 ? (
+            filteredRecipes.map((recipe, index) => (
+              <RecipeCard recipe={recipe} index={index} key={index} />
+            ))
+          ) : (
+            <p>No recipes found for this category.</p>
+          )}
         </div>
-
-    );
+      )}
+    </div>
+  );
 };
+
 export default Page;
-
-
-

@@ -1,16 +1,58 @@
+/* Container for the entire page layout */
 .pageContainer {
   display: flex;
-  flex-direction: row;
-  padding: 16px;
-  justify-content: center;
+  flex-direction: column; /* Change to column so the button is at the top */
+  justify-content: flex-start; /* Align at the start of the page */
   align-items: center;
   height: 100vh;
+  padding: 16px;
+  position: relative;
 }
 
+/* Add Recipe Button styling */
+.addButton {
+  background-color: #0D92F4; /* Blue background */
+  color: white;
+  padding: 14px 28px; /* Increased padding for better size */
+  font-size: 20px; /* Slightly larger font */
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  position: sticky; /* Sticky to stay at the top */
+  top: 16px; /* A little padding from the top */
+  z-index: 1001; /* Ensures it stays above other content */
+  font-weight: bold; /* Bold font for emphasis */
+  margin-bottom: 20px; /* Space below button */
+}
+
+/* Add hover and focus effects */
+.addButton:hover {
+  background-color: #0c7ac3; /* Slightly darker blue on hover */
+  transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+/* Focus effect to show the button is focused */
+.addButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(13, 146, 244, 0.5); /* Blue outline */
+}
+
+/* Loading text styling */
+.loading {
+  font-size: 18px;
+  color: #666;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Recipes grid styling */
 .recipesGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(200px, 1fr)); 
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
   gap: 30px;
   flex: 1;
-  
+  width: 100%;
+  margin-top: 60px; /* Ensure recipes grid isn't hidden behind button */
 }
