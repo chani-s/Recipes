@@ -6,12 +6,12 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <p>עמוד ראשי</p>
-
-        <Link className="nav-link" href="/recipes">לינק למתכונים</Link>
+        <h1>ברוכים הבאים!</h1>
+        <h2>בואו נתחיל לבשל</h2>
+        <Link className="nav-link" href="/recipes">למתכונים</Link>
 
       </main>
-      
+
     </div>
   );
 }
