@@ -1,5 +1,6 @@
 "use client"
 import recipeService from "../services/recipes";
+import {saveToStorage} from '../services/localStorage'
 import { Recipe } from "../../models/recipe";
 import { useEffect, useState } from "react";
 import styles from './recipes.module.css';
@@ -11,6 +12,7 @@ const Page = () => {
     const getRecipes = async () => {
         try {
             const recipesData = await recipeService.getAllRecipes();
+            saveToStorage("recipes", recipesData);
             setRecipes(recipesData);
             console.log("Fetched recipes:", recipesData);
         } catch (error: any) {
