@@ -1,5 +1,5 @@
 import { http } from './http';
-import { Recipe } from '../models/recipe';
+import { Recipe } from '../../models/recipe';
 import axios, { AxiosResponse } from 'axios';
 
 const recipeService = {

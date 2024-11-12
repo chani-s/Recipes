@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './show.module.css'; // Create a CSS module for styling
-import { Recipe } from "@/app/models/recipe";
+import { Recipe } from "@/models/recipe";
 
 const PageSidebar = ({ recipe, onClose }: { recipe: Recipe | null; onClose: () => void }) => {
     if (!recipe) return null;
