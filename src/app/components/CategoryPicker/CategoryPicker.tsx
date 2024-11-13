@@ -1,5 +1,6 @@
 // components/CategoryPicker.tsx
 import React, { useState } from "react";
+import styles from './CategoryPicker.module.css'
 
 interface CategoryPickerProps {
   categories: string[];
@@ -17,8 +18,8 @@ const CategoryPicker: React.FC<CategoryPickerProps> = ({ categories, onCategoryS
 
   return (
     <div>
-      <select id="category" value={selectedCategory} onChange={handleCategoryChange}>
-        <option value="">בחר קטגוריה:</option>
+      <select className={styles.selectBar} id="category" value={selectedCategory} onChange={handleCategoryChange}>
+        <option value="">בחר קטגוריה</option>
         {categories.map((category, index) => (
           <option key={index} value={category}>
             {category}

@@ -1,13 +1,13 @@
-// recipe.ts
-"use client";
+"use client"
 
 import { ObjectId } from "mongodb";
 
-export interface Recipe{
-    _id: ObjectId;
+
+export interface RecipeToAdd{
     title: string;
-    catergory: string;
+    category: string;
     instructions: string[];
     ingredients: string[];
     image: string;
 }
+
