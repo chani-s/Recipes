@@ -56,7 +56,7 @@ const AddRecipeForm = ({ onAddRecipe, onClose }: AddRecipeFormProps) => {
       />
       <input
         type="text"
-        name="category"
+        name="catergory"
         placeholder="Category"
         value={newRecipe.catergory || ""}
         onChange={handleChange}

@@ -7,6 +7,7 @@ import RecipeCard from "../components/RecipeCard/RecipeCard";
 import CategoryPicker from "../components/CategoryPicker/CategoryPicker";
 
 import AddRecipeForm from "../components/addRecipe/addRecipe"; // Import AddRecipeForm
+import { getFromStorage, saveToStorage } from "../services/localStorage";
 
 const Page = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -21,16 +22,34 @@ const Page = () => {
 
   const getRecipes = async () => {
     try {
-      const recipesData = await recipeService.getAllRecipes();
-      setRecipes(recipesData);
-            setFilteredRecipes(recipesData);  // Initially show all recipes
-      console.log("Fetched recipes:", recipesData);
+        const lastCall = sessionStorage.getItem('timeSpan');
+        const fiveMinutes = 5 * 60 * 1000; // 5 minutes in milliseconds
+
+        let recipesData;
+
+        // Check if 5 minutes have passed since the last API call
+        if (!lastCall || (Date.now() - parseInt(lastCall) > fiveMinutes)) {
+            // Fetch new data from the API
+            console.log("fetch")
+            recipesData = await recipeService.getAllRecipes();
+            sessionStorage.setItem('timeSpan', Date.now().toString());
+            saveToStorage('recipes',recipesData);
+        } else {
+            // Retrieve data from local storage
+            console.log("from LS")
+            const recipesFromLS = getFromStorage('recipes');
+            recipesData = recipesFromLS;
+        }
+
+        // Set recipes state
+        setRecipes(recipesData);
+        setFilteredRecipes(recipesData); // Initially show all recipes
     } catch (error: any) {
-      console.log("Error fetching recipes:", error.message);
+        console.log("Error fetching recipes:", error.message);
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
-  };
+};
 
     const handleCategorySelect = (category: string) => {
         setSelectedCategory(category);
