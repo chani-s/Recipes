@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './show.module.css'; // Create a CSS module for styling
+import styles from './show.module.css';
 import { Recipe } from "@/models/recipe";
 interface PageSidebarProps {
     recipe: Recipe | null;
