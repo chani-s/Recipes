@@ -1,28 +1,33 @@
 "use client"
-import {getFromStorage} from '../../services/localStorage'
+import { getFromStorage } from '../../services/localStorage'
 import { Recipe } from "../../../models/recipe";
 import { Favorite } from "@/models/favorite";
 import { useEffect, useState } from "react";
 import styles from '../recipes.module.css';
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
+import { useObjectIdStore } from '../../services/zustand';
+import { ObjectId } from "mongodb";
+
 
 const Page = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
     const [loading, setLoading] = useState(true);
+    const objectIds = useObjectIdStore((state) => state.objectIds);
+    const setObjectIds = useObjectIdStore((state) => state.setObjectIds);
+
+
     const getRecipes = async () => {
         try {
-            const favoriteRecipes=getFromStorage<Favorite>("favorite");
+            const favoriteRecipes = getFromStorage("favorite");
             const recipes = getFromStorage<Recipe>("recipes");
-            if(favoriteRecipes&&recipes){
-                const favoriteRecipesFilter=favoriteRecipes.filter(recipe => recipe.isFavorite==true);
-                const filteredArray = recipes.filter(obj2 => 
-                    favoriteRecipesFilter.some(obj1 => obj1._id === obj2._id));
-                setRecipes(filteredArray);
+            if (favoriteRecipes && recipes) {
+                const filteredRecipes = recipes.filter(recipe => favoriteRecipes.includes(recipe._id));
+                setRecipes(filteredRecipes);
             }
-            else{
+            else {
                 setRecipes([]);
             }
-            
+
         } catch (error: any) {
             console.log("Error fetching recipes:", error.message);
         }
@@ -30,9 +35,10 @@ const Page = () => {
             setLoading(false);
         }
     };
+
     useEffect(() => {
         getRecipes();
-    }, []);
+    }, [objectIds]);
 
 
 

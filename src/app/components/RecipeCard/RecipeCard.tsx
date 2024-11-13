@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './RecipeCard.module.css';
 import { Recipe } from "@/models/recipe";
-import { Favorite } from "@/models/favorite";
 import { saveToStorage, getFromStorage } from '../../services/localStorage'
 import { ObjectId } from "mongodb";
 import PageSidebar from "../PageSidebar/PageSidebar";
+import { useObjectIdStore } from '../../services/zustand';
+import { FaRegStar, FaStar } from "react-icons/fa";
+
 
 interface CardProps {
   recipe: Recipe | null;
@@ -12,11 +14,17 @@ interface CardProps {
 }
 
 const RecipeCard = ({ recipe, index }: CardProps) => {
-  console.log(recipe);
 
+  const setObjectIds = useObjectIdStore((state) => state.setObjectIds);
+  const objectIds = useObjectIdStore((state) => state.objectIds);
+  const isFavorite = objectIds.some((objectId) => objectId.toString() === recipe?._id.toString());
+
+  console.log("klklkl");
+
+  console.log(objectIds);
+  console.log(isFavorite);
 
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | undefined>(undefined);
-
 
   const openSidebar = (recipe: Recipe) => {
 
@@ -30,15 +38,23 @@ const RecipeCard = ({ recipe, index }: CardProps) => {
 
   const addOrRemoveFromFavorite = (recipeId: ObjectId) => {
 
-    const favoriteRecipes = getFromStorage<Favorite>("favorite") || [];
-    const updatedFavoriteRecipes = favoriteRecipes.map(recipe => {
-      if (recipe._id == recipeId) {
-        const isFavorite = !(recipe.isFavorite)
-        return { ...recipe, isFavorite: isFavorite };
-      }
-      return recipe;
-    });
-    saveToStorage("favorite", updatedFavoriteRecipes);
+    const favoriteRecipes = getFromStorage<ObjectId>("favorite") || [];
+
+    const index = favoriteRecipes.findIndex(obj => obj == recipeId);
+
+    if (index !== -1) {
+      favoriteRecipes.splice(index, 1);
+    } else {
+      favoriteRecipes.push(recipeId);
+    }
+    saveToStorage("favorite", favoriteRecipes);
+
+    console.log(favoriteRecipes);
+    
+    if (favoriteRecipes)
+      setObjectIds(favoriteRecipes);
+    else
+      setObjectIds([]);
   }
 
 
@@ -52,7 +68,7 @@ const RecipeCard = ({ recipe, index }: CardProps) => {
 
       >
         <button onClick={() => openSidebar(recipe)}>open</button>
-        <button onClick={() => addOrRemoveFromFavorite(recipe._id)}>⭐</button>
+        <button onClick={() => addOrRemoveFromFavorite(recipe._id)}>{!isFavorite ? <FaRegStar /> : <FaStar />}</button>
 
         {recipe.image && (
           <img
