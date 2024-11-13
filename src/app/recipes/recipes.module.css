@@ -1,10 +1,22 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 .pageContainer {
   display: flex;
   flex-direction: row;
   justify-content: flex-start; /* או space-between או space-evenly, לפי הצורך */
   align-items: flex-start;
   padding: 16px;
+=======
+.pageContainer {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: flex-start; 
+  align-items: flex-start; */
+  padding: 16px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+>>>>>>> d5c1b8823ee113a28075c99f068300d0c7f101f2
 }
 
 .recipesGrid {
@@ -14,6 +26,7 @@
   flex: 1;
   
 }
+<<<<<<< HEAD
 
 .recipeContainer {
   display: flex;
@@ -96,3 +109,5 @@
   margin-top: 12px;
 }
 >>>>>>> e502f41 (add recipes cards)
+=======
+>>>>>>> d5c1b8823ee113a28075c99f068300d0c7f101f2

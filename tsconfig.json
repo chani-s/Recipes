@@ -22,9 +22,13 @@
     }
   },
 <<<<<<< HEAD
+<<<<<<< HEAD
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next.config.mjs", "src/app/recipes/page.jsx", "src/app/services/mongo.js"],
 =======
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next.config.mjs"],
 >>>>>>> e3ed1af (layout works)
+=======
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next.config.mjs", "src/app/recipes/page.jsx", "src/app/services/mongo.js"],
+>>>>>>> d5c1b8823ee113a28075c99f068300d0c7f101f2
   "exclude": ["node_modules"]
 }

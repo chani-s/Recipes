@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 
@@ -20,6 +21,9 @@
 //     return NextResponse.json(recipes);
 // }
 >>>>>>> ec4a8af (my diffrence)
+=======
+
+>>>>>>> d5c1b8823ee113a28075c99f068300d0c7f101f2
 import { NextResponse } from "next/server";
 import { connectDatabase, getAllDocuments } from "../../services/mongo";
 
