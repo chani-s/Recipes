@@ -80,23 +80,20 @@ const Page = () => {
 
   return (
     <div className={styles.pageContainer}>
-      {/* Category Picker */}
       <CategoryPicker categories={categories} onCategorySelect={handleCategorySelect} />
 
-      {/* Button to open the Add Recipe form */}
       <button onClick={handleOpenForm} className={styles.addButton}>
         Add Recipe
       </button>
 
-      {/* AddRecipeForm displayed as a sidebar */}
       {isFormOpen && (
         <AddRecipeForm
           onAddRecipe={handleAddRecipe}
           onClose={handleCloseForm}
+          categories={categories}
         />
       )}
 
-      {/* Loading or recipe grid */}
       {loading ? (
         <p>LOADING...</p>
       ) : (
