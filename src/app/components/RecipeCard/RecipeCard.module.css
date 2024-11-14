@@ -52,6 +52,27 @@
     animation: spin 1s linear infinite;
 }
 
+.buttonsBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.openButton{
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.starBbutton{
+    padding: 10px 20px;
+    background-color: none;
+    border: none;
+    cursor: pointer;
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);

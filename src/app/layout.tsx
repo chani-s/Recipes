@@ -25,9 +25,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link href="https://fonts.google.com/specimen/Sour+Gummy" rel="stylesheet"></link>
+      </head>
+
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <header className="header">
-        <h1>המתכונים שלי</h1>
+
+          <h1>My Recpies</h1>
 
         </header>
         <main>{children}</main>

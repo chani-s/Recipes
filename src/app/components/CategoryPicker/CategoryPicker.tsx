@@ -19,7 +19,7 @@ const CategoryPicker: React.FC<CategoryPickerProps> = ({ categories, onCategoryS
   return (
     <div>
       <select className={styles.selectBar} id="category" value={selectedCategory} onChange={handleCategoryChange}>
-        <option value="">בחר קטגוריה</option>
+        <option value="">כל הקטגוריות</option>
         {categories.map((category, index) => (
           <option key={index} value={category}>
             {category}

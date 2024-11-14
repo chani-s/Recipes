@@ -9,7 +9,9 @@ interface AddRecipeFormProps {
   categories: string[];
 }
 
-const AddRecipeForm = ({ onAddRecipe, onClose,categories}: AddRecipeFormProps) => {
+
+const AddRecipeForm = ({ onAddRecipe, onClose, categories}: AddRecipeFormProps) => {
+
   const [newRecipe, setNewRecipe] = useState<Partial<Recipe>>({
     title: "",
     catergory: "",
@@ -47,8 +49,7 @@ const AddRecipeForm = ({ onAddRecipe, onClose,categories}: AddRecipeFormProps) =
   return (
     <div className={`${styles.formContainer} ${styles.formOpen}`}>
       <button onClick={onClose} className={styles.closeButton}>
-        Close
-      </button>
+x      </button>
       <h2 className={styles.title}>Add New Recipe</h2>
       <input
         type="text"
@@ -62,7 +63,7 @@ const AddRecipeForm = ({ onAddRecipe, onClose,categories}: AddRecipeFormProps) =
   name="category"
   value={newRecipe.catergory || ""}
   onChange={handleChange}
-  className={styles.inputField} // This will style it consistently with other inputs
+  className={styles.inputField} 
 >
   <option value="" disabled>select category</option>
   {categories.map((category) => (
