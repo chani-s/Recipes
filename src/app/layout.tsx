@@ -32,7 +32,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <header className="header">
 
-          <h1>My Recpies</h1>
+          <h1>My Recipes</h1>
 
         </header>
         <main>{children}</main>
