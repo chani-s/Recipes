@@ -11,6 +11,7 @@ import { ObjectId } from "mongodb";
 import { useObjectIdStore } from '../services/zustand';
 import Link from 'next/link';
 import { IoHeart } from "react-icons/io5";
+import Header from "../components/Header/Header";
 
 
 
@@ -91,35 +92,18 @@ const Page = () => {
         handleCloseForm();
     };
 
-    // const goToFavorites = () => {
-    //     router.push("/favorite");
-    // };
-
     return (
         <div className={styles.pageContainer}>
-            <div className={styles.sortBar}>
-                <CategoryPicker categories={categories} onCategorySelect={handleCategorySelect} />
-
-                <input
-                    type="text"
-                    placeholder="חפש מתכון"
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                    className={styles.searchBar}
-                />
-
-                <button onClick={handleOpenForm} className={styles.addButton}>
-                    הוספת מתכון
-                </button>
-
-                <Link className="nav-link" href="/recipes/favorite"><IoHeart className={styles.heartIcon}/></Link>
-
-                {isFormOpen && (
-                    <AddRecipeForm onAddRecipe={handleAddRecipe} onClose={handleCloseForm} categories={categories} />
-                )}
-            </div>
             <div>
-
+                <Header categories={categories} 
+                handleCategory={handleCategorySelect} 
+                searchQuery={searchQuery}
+                handleSearchChange={handleSearchChange}
+                handleOpenForm={handleOpenForm} 
+                isFormOpen={isFormOpen}
+                handleAddRecipe={handleAddRecipe}
+                handleCloseForm={handleCloseForm}
+                />
             </div>
 
             {loading ? (

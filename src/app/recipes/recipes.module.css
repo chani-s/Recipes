@@ -7,12 +7,11 @@
   position: relative;
 }
 
-.searchBar {
+/* .searchBar {
   padding: 8px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  text-align: right;
 }
 
 
@@ -38,7 +37,7 @@
 .addButton:hover {
   color: #832e2e;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+} */
 
 
 .loading {
@@ -57,41 +56,3 @@
   margin-top: 60px;
 }
 
-/* .navBar {
-  display: flex;
-  justify-content: center;
-  background-color: #333;
-  padding: 10px 0;
-}
-
-.navList {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  padding: 0;
-  margin: 0;
-}
-
-.navItem {
-  font-size: 18px;
-}
-
-.link {
-  text-decoration: none;
-  color: #fff;
-  transition: color 0.3s;
-}
-
-.link:hover {
-  color: #ff6347; 
-} */
-
-.activeLink {
-  color: #ff6347; 
-  font-weight: bold;
-}
-
-.heartIcon {
-  font-size: 25px;
-  color: rgb(192, 53, 76);
-}

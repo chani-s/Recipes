@@ -1,0 +1,45 @@
+.searchBar {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  
+  .sortBar {
+    background-color: #1c1c1c;
+    color: #ffffff;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .addButton {
+    background: none;
+    border: none;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+  
+  .addButton:hover {
+    color: #832e2e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .icons{
+    display: flex;
+    gap: 10px;
+  }
+  
+  .heartIcon {
+    font-size: 35px;
+    color: rgb(192, 53, 76);
+  }
+
+  .homeIcon {
+    font-size: 35px;
+  }

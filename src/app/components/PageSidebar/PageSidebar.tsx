@@ -12,13 +12,13 @@ const PageSidebar = ({ recipe, onClose }: PageSidebarProps) => {
             <button onClick={onClose} className={styles.closeButton}>Close</button>
             <h2 className={styles.title}>{recipe.title}</h2>
             {recipe.image && <img src={recipe.image} alt={recipe.title} className={styles.recipeImage} />}
-            <h3 className={styles.sectionTitle}>רכיבים:</h3>
+            <h3 className={styles.sectionTitle}>Ingredients:</h3>
             <ul className={styles.ingredientList}>
                 {recipe.ingredients.map((ingredient, index) => (
                     <li key={index}>{ingredient}</li>
                 ))}
             </ul>
-            <h3 className={styles.sectionTitle}>הוראות הכנה:</h3>
+            <h3 className={styles.sectionTitle}>Instructions:</h3>
             <ol className={styles.instructionList}>
                 {recipe.instructions.map((instruction, index) => (
                     <li key={index}>{instruction}</li>

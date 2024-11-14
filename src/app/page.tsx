@@ -5,9 +5,9 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <h1>ברוכים הבאים!</h1>
-        <h2>בואו נתחיל לבשל</h2>
-        <Link className="nav-link" href="/recipes">למתכונים</Link>
+        <h1></h1>
+        <h2>Lets Start Cooking :)</h2>
+        <Link className={styles.navLink} href="/recipes">Recipes</Link>
 
       </main>
 
