@@ -1,5 +1,3 @@
-// This is the real page. it works well with the fichers and styles
-
 "use client";
 import { useEffect, useState } from "react";
 import recipeService from "../services/recipes";
@@ -7,11 +5,13 @@ import { Recipe } from "../../models/recipe";
 import styles from "./recipes.module.css";
 import RecipeCard from "../components/RecipeCard/RecipeCard";
 import CategoryPicker from "../components/CategoryPicker/CategoryPicker";
-
 import AddRecipeForm from "../components/addRecipe/addRecipe";
-import { getFromStorage, saveToStorage} from '../services/localStorage';
+import { getFromStorage, saveToStorage } from '../services/localStorage';
 import { ObjectId } from "mongodb";
 import { useObjectIdStore } from '../services/zustand';
+import Link from 'next/link';
+import { IoHeart } from "react-icons/io5";
+
 
 
 const Page = () => {
@@ -19,7 +19,7 @@ const Page = () => {
     const [filteredRecipes, setFilteredRecipes] = useState<Recipe[]>([]);
     const [loading, setLoading] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState<string>("");
-    const [searchQuery, setSearchQuery] = useState<string>(""); 
+    const [searchQuery, setSearchQuery] = useState<string>("");
     const categories = ["מנות עיקריות", "עוגיות", "תוספות", "עוגות"];
     const [isFormOpen, setIsFormOpen] = useState(false);
     const setObjectIds = useObjectIdStore((state) => state.setObjectIds);
@@ -30,7 +30,7 @@ const Page = () => {
             saveToStorage("recipes", recipesData);
 
             const favoriteRecipes = getFromStorage<ObjectId>("favorite");
-            
+
             if (favoriteRecipes)
                 setObjectIds(favoriteRecipes);
             else
@@ -46,7 +46,7 @@ const Page = () => {
             setLoading(false);
 
         }
-};
+    };
 
     const handleCategorySelect = (category: string) => {
         setSelectedCategory(category);
@@ -91,6 +91,9 @@ const Page = () => {
         handleCloseForm();
     };
 
+    // const goToFavorites = () => {
+    //     router.push("/favorite");
+    // };
 
     return (
         <div className={styles.pageContainer}>
@@ -108,12 +111,15 @@ const Page = () => {
                 <button onClick={handleOpenForm} className={styles.addButton}>
                     הוספת מתכון
                 </button>
+
+                <Link className="nav-link" href="/recipes/favorite"><IoHeart className={styles.heartIcon}/></Link>
+
                 {isFormOpen && (
                     <AddRecipeForm onAddRecipe={handleAddRecipe} onClose={handleCloseForm} categories={categories} />
                 )}
             </div>
             <div>
-                
+
             </div>
 
             {loading ? (
@@ -131,8 +137,8 @@ const Page = () => {
             )}
 
         </div>
-      
-  );
+
+    );
 };
 
 export default Page;
