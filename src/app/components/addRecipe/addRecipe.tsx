@@ -9,7 +9,9 @@ interface AddRecipeFormProps {
   categories: string[];
 }
 
+
 const AddRecipeForm = ({ onAddRecipe, onClose, categories}: AddRecipeFormProps) => {
+
   const [newRecipe, setNewRecipe] = useState<Partial<Recipe>>({
     title: "",
     catergory: "",
@@ -29,6 +31,7 @@ const AddRecipeForm = ({ onAddRecipe, onClose, categories}: AddRecipeFormProps) 
     } else {
       setNewRecipe({ ...newRecipe, [name]: value });
     }
+    console.log(newRecipe.catergory); // Debugging line
   };
 
   const handleAdd = () => {

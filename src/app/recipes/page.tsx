@@ -7,10 +7,12 @@ import { Recipe } from "../../models/recipe";
 import styles from "./recipes.module.css";
 import RecipeCard from "../components/RecipeCard/RecipeCard";
 import CategoryPicker from "../components/CategoryPicker/CategoryPicker";
+
 import AddRecipeForm from "../components/addRecipe/addRecipe";
 import { getFromStorage, saveToStorage} from '../services/localStorage';
 import { ObjectId } from "mongodb";
 import { useObjectIdStore } from '../services/zustand';
+
 
 const Page = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -42,8 +44,18 @@ const Page = () => {
             console.log("Error fetching recipes:", error.message);
         } finally {
             setLoading(false);
+
         }
-    };
+
+        // Set recipes state
+        setRecipes(recipesData);
+        setFilteredRecipes(recipesData); // Initially show all recipes
+    } catch (error: any) {
+        console.log("Error fetching recipes:", error.message);
+    } finally {
+        setLoading(false);
+    }
+};
 
     const handleCategorySelect = (category: string) => {
         setSelectedCategory(category);
@@ -88,6 +100,7 @@ const Page = () => {
         handleCloseForm();
     };
 
+
     return (
         <div className={styles.pageContainer}>
             <div className={styles.sortBar}>
@@ -125,8 +138,11 @@ const Page = () => {
                     )}
                 </div>
             )}
+
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
 export default Page;
