@@ -5,7 +5,9 @@ import PageSidebar from "../PageSidebar/PageSidebar";
 import { saveToStorage, getFromStorage } from '../../services/localStorage'
 import { ObjectId } from "mongodb";
 import { useObjectIdStore } from '../../services/zustand';
-import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { IoMdHeart } from 'react-icons/io';
+import { IoHeartOutline } from "react-icons/io5";
+
 
 interface CardProps {
     recipe: Recipe | null;
@@ -72,8 +74,9 @@ const RecipeCard = ({ recipe, index }: CardProps) => {
                     <button className={styles.openButton} onClick={() => openSidebar(recipe)}>open</button>
                     <button className={styles.starBbutton}
                         onClick={() => addOrRemoveFromFavorite(recipe._id)}>
-                        {!isFavorite ? <FaRegHeart /> : <FaHeart style={{ color: 'rgb(192, 53, 76)' }}
-                        />}</button>
+                        {!isFavorite ? <IoHeartOutline className={styles.heartIcon} /> :
+                            <IoMdHeart className={`${styles.heartIcon} ${styles.favoriteIcon}`}
+                            />}</button>
                 </div>
             </div>
             {selectedRecipe && (

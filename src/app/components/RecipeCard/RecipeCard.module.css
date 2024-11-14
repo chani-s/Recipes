@@ -52,13 +52,13 @@
     animation: spin 1s linear infinite;
 }
 
-.buttonsBar{
+.buttonsBar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.openButton{
+.openButton {
     background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
@@ -66,11 +66,19 @@
     cursor: pointer;
 }
 
-.starBbutton{
+.starBbutton {
     padding: 10px 20px;
     background-color: none;
     border: none;
     cursor: pointer;
+}
+
+.heartIcon {
+    font-size: 25px;
+}
+
+.favoriteIcon {
+    color: rgb(192, 53, 76);
 }
 
 @keyframes spin {
