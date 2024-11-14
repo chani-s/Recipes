@@ -1,5 +1,3 @@
-// This is the real page. it works well with the fichers and styles
-
 "use client";
 import { useEffect, useState } from "react";
 import recipeService from "../services/recipes";
@@ -8,9 +6,9 @@ import styles from "./recipes.module.css";
 import RecipeCard from "../components/RecipeCard/RecipeCard";
 import CategoryPicker from "../components/CategoryPicker/CategoryPicker";
 import AddRecipeForm from "../components/addRecipe/addRecipe";
-import { getFromStorage, saveToStorage} from '../services/localStorage';
-import { ObjectId } from "mongodb";
+import { saveToStorage, getFromStorage } from '../services/localStorage'
 import { useObjectIdStore } from '../services/zustand';
+import { ObjectId } from "mongodb";
 
 const Page = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -18,14 +16,17 @@ const Page = () => {
     const [loading, setLoading] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState<string>("");
     const [searchQuery, setSearchQuery] = useState<string>(""); 
+
     const categories = ["מנות עיקריות", "עוגיות", "תוספות", "עוגות"];
     const [isFormOpen, setIsFormOpen] = useState(false);
-    const setObjectIds = useObjectIdStore((state) => state.setObjectIds);
+    const setObjectIds = useObjectIdStore((state: { setObjectIds: any; }) => state.setObjectIds);
+
 
     const getRecipes = async () => {
         try {
             const recipesData = await recipeService.getAllRecipes();
             saveToStorage("recipes", recipesData);
+            setRecipes(recipesData);
 
             const favoriteRecipes = getFromStorage<ObjectId>("favorite");
             
@@ -33,10 +34,8 @@ const Page = () => {
                 setObjectIds(favoriteRecipes);
             else
                 setObjectIds([]);
-
-            setRecipes(recipesData);
+            
             setFilteredRecipes(recipesData);
-
             console.log("Fetched recipes:", recipesData);
         } catch (error: any) {
             console.log("Error fetching recipes:", error.message);
@@ -107,9 +106,6 @@ const Page = () => {
                 {isFormOpen && (
                     <AddRecipeForm onAddRecipe={handleAddRecipe} onClose={handleCloseForm} categories={categories} />
                 )}
-            </div>
-            <div>
-                
             </div>
 
             {loading ? (

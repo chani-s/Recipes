@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  /* align-items: center; */
   height: 100vh;
   padding: 16px;
   position: relative;
@@ -15,7 +14,6 @@
   border-radius: 4px;
   text-align: right;
 }
-
 
 
 .sortBar {
@@ -57,4 +55,38 @@
   flex: 1;
   width: 100%;
   margin-top: 60px;
+}
+
+.navBar {
+  display: flex;
+  justify-content: center;
+  background-color: #333;
+  padding: 10px 0;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.navItem {
+  font-size: 18px;
+}
+
+.link {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s;
+}
+
+.link:hover {
+  color: #ff6347; /* Tomato color for hover effect */
+}
+
+.activeLink {
+  color: #ff6347; /* Highlight the active link */
+  font-weight: bold;
 }

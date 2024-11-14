@@ -6,9 +6,10 @@ import styles from "./addRecipe.module.css";
 interface AddRecipeFormProps {
   onAddRecipe: (newRecipe: Recipe) => void;
   onClose: () => void;
+  categories: string[];
 }
 
-const AddRecipeForm = ({ onAddRecipe, onClose }: AddRecipeFormProps) => {
+const AddRecipeForm = ({ onAddRecipe, onClose, categories}: AddRecipeFormProps) => {
   const [newRecipe, setNewRecipe] = useState<Partial<Recipe>>({
     title: "",
     catergory: "",
@@ -18,9 +19,11 @@ const AddRecipeForm = ({ onAddRecipe, onClose }: AddRecipeFormProps) => {
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
+    console.log(`Field: ${name}, Value: ${value}`); // Debugging line
+    if(name=="category"){}
     if (name === "instructions" || name === "ingredients") {
       setNewRecipe({ ...newRecipe, [name]: value.split("\n") });
     } else {
@@ -43,8 +46,7 @@ const AddRecipeForm = ({ onAddRecipe, onClose }: AddRecipeFormProps) => {
   return (
     <div className={`${styles.formContainer} ${styles.formOpen}`}>
       <button onClick={onClose} className={styles.closeButton}>
-        Close
-      </button>
+x      </button>
       <h2 className={styles.title}>Add New Recipe</h2>
       <input
         type="text"
@@ -54,14 +56,20 @@ const AddRecipeForm = ({ onAddRecipe, onClose }: AddRecipeFormProps) => {
         onChange={handleChange}
         className={styles.inputField}
       />
-      <input
-        type="text"
-        name="category"
-        placeholder="Category"
-        value={newRecipe.catergory || ""}
-        onChange={handleChange}
-        className={styles.inputField}
-      />
+<select
+  name="category"
+  value={newRecipe.catergory || ""}
+  onChange={handleChange}
+  className={styles.inputField} 
+>
+  <option value="" disabled>select category</option>
+  {categories.map((category) => (
+    <option key={category} value={category}>
+      {category}
+    </option>
+  ))}
+</select>
+
       <textarea
         name="instructions"
         placeholder="Instructions (one per line)"
