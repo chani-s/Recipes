@@ -10,6 +10,8 @@ import { getFromStorage, saveToStorage } from '../services/localStorage';
 import { ObjectId } from "mongodb";
 import { useObjectIdStore } from '../services/zustand';
 import Link from 'next/link';
+import { IoHeart } from "react-icons/io5";
+
 
 
 const Page = () => {
@@ -110,12 +112,7 @@ const Page = () => {
                     הוספת מתכון
                 </button>
 
-                {/* <button onClick={goToFavorites} className={styles.favoriteButton}>
-                    מתכונים אהובים
-                </button> */}
-                <Link className="nav-link" href="/recipes/favorite">לאהובים שלך</Link>
-
-
+                <Link className="nav-link" href="/recipes/favorite"><IoHeart className={styles.heartIcon}/></Link>
 
                 {isFormOpen && (
                     <AddRecipeForm onAddRecipe={handleAddRecipe} onClose={handleCloseForm} categories={categories} />

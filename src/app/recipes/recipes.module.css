@@ -57,7 +57,7 @@
   margin-top: 60px;
 }
 
-.navBar {
+/* .navBar {
   display: flex;
   justify-content: center;
   background-color: #333;
@@ -83,10 +83,15 @@
 }
 
 .link:hover {
-  color: #ff6347; /* Tomato color for hover effect */
-}
+  color: #ff6347; 
+} */
 
 .activeLink {
-  color: #ff6347; /* Highlight the active link */
+  color: #ff6347; 
   font-weight: bold;
+}
+
+.heartIcon {
+  font-size: 25px;
+  color: rgb(192, 53, 76);
 }

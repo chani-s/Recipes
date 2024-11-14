@@ -5,8 +5,7 @@ import PageSidebar from "../PageSidebar/PageSidebar";
 import { saveToStorage, getFromStorage } from '../../services/localStorage'
 import { ObjectId } from "mongodb";
 import { useObjectIdStore } from '../../services/zustand';
-import { IoMdHeart } from 'react-icons/io';
-import { IoHeartOutline } from "react-icons/io5";
+import { IoHeartOutline, IoHeart } from "react-icons/io5";
 
 
 interface CardProps {
@@ -19,12 +18,7 @@ const RecipeCard = ({ recipe, index }: CardProps) => {
     const objectIds = useObjectIdStore((state) => state.objectIds);
     const isFavorite = objectIds.some((objectId) => objectId.toString() === recipe?._id.toString());
 
-    console.log("klklkl");
-    console.log(objectIds);
-    console.log(isFavorite);
-
     const [selectedRecipe, setSelectedRecipe] = useState<Recipe | undefined>(undefined);
-
 
     const openSidebar = (recipe: Recipe) => {
         setSelectedRecipe(recipe);
@@ -75,7 +69,7 @@ const RecipeCard = ({ recipe, index }: CardProps) => {
                     <button className={styles.starBbutton}
                         onClick={() => addOrRemoveFromFavorite(recipe._id)}>
                         {!isFavorite ? <IoHeartOutline className={styles.heartIcon} /> :
-                            <IoMdHeart className={`${styles.heartIcon} ${styles.favoriteIcon}`}
+                            <IoHeart className={`${styles.heartIcon} ${styles.favoriteIcon}`}
                             />}</button>
                 </div>
             </div>
