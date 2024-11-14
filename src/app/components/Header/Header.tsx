@@ -2,6 +2,7 @@ import styles from './Header.module.css';
 import AddRecipeForm from '../addRecipe/addRecipe';
 import CategoryPicker from '../CategoryPicker/CategoryPicker';
 import { IoHeart } from "react-icons/io5";
+import { FaHome } from "react-icons/fa"
 import Link from 'next/link';
 import { Recipe } from '@/models/recipe';
 
@@ -33,9 +34,10 @@ const Header = ({ categories, handleCategory, searchQuery, handleSearchChange, h
             <button onClick={handleOpenForm} className={styles.addButton}>
                 Add Recipe
             </button>
-
-            <Link className="nav-link" href="/recipes/favorite"><IoHeart className={styles.heartIcon} /></Link>
-
+            <div className={styles.icons}>
+                <Link className="nav-link" href="/recipes/favorite"><IoHeart className={styles.heartIcon} /></Link>
+                <Link className="nav-link" href="/recipes"><FaHome className={styles.homeIcon} /></Link>
+            </div>
             {isFormOpen && (
                 <AddRecipeForm onAddRecipe={handleAddRecipe} onClose={handleCloseForm} categories={categories} />
             )}
