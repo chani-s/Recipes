@@ -46,15 +46,6 @@ const Page = () => {
             setLoading(false);
 
         }
-
-        // Set recipes state
-        setRecipes(recipesData);
-        setFilteredRecipes(recipesData); // Initially show all recipes
-    } catch (error: any) {
-        console.log("Error fetching recipes:", error.message);
-    } finally {
-        setLoading(false);
-    }
 };
 
     const handleCategorySelect = (category: string) => {
@@ -140,8 +131,7 @@ const Page = () => {
             )}
 
         </div>
-      )}
-    </div>
+      
   );
 };
 
