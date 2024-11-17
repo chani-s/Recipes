@@ -73,7 +73,7 @@ const Page = () => {
         let filtered = recipes;
 
         if (category) {
-            filtered = filtered.filter(recipe => recipe.catergory === category);
+            filtered = filtered.filter(recipe => recipe.category === category);
         }
 
         if (query) {

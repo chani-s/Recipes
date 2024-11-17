@@ -14,7 +14,7 @@ const defaultImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS
 const AddRecipeForm = ({ onAddRecipe, onClose, categories }: AddRecipeFormProps) => {
   const [newRecipe, setNewRecipe] = useState<Partial<Recipe>>({
     title: "",
-    catergory: "",
+    category: "",
     instructions: [],
     ingredients: [],
     image: "",
@@ -39,7 +39,7 @@ const AddRecipeForm = ({ onAddRecipe, onClose, categories }: AddRecipeFormProps)
   const validateForm = () => {
     const newErrors: { [key: string]: string } = {};
     if (!newRecipe.title) newErrors.title = "Title is required.";
-    if (!newRecipe.catergory) newErrors.catergory = "Category is required.";
+    if (!newRecipe.category) newErrors.category = "Category is required.";
     if (!newRecipe.instructions || newRecipe.instructions.length === 0) {
       newErrors.instructions = "At least one instruction is required.";
     }
@@ -61,7 +61,7 @@ const AddRecipeForm = ({ onAddRecipe, onClose, categories }: AddRecipeFormProps)
     onAddRecipe(newRecipe as Recipe);
     setNewRecipe({
       title: "",
-      catergory: "",
+      category: "",
       instructions: [],
       ingredients: [],
       image: "",
@@ -85,8 +85,8 @@ return (
       {errors.title && <p className={styles.errorText}>{errors.title}</p>}
 
       <select
-        name="catergory"
-        value={newRecipe.catergory || ""}
+        name="category"
+        value={newRecipe.category || ""}
         onChange={handleChange}
         className={`${styles.inputField} ${errors.category ? styles.errorField : ""}`}
       >
