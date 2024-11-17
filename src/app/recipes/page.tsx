@@ -18,7 +18,7 @@ const Page = () => {
     const [loading, setLoading] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState<string>("");
     const [searchQuery, setSearchQuery] = useState<string>("");
-    const categories = ["מנות עיקריות", "עוגיות", "תוספות", "עוגות"];
+    const categories = ["Main dishes", "Cookies", "Side dishes", "Cakes"];
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const recipesPerPage = 8;
@@ -104,6 +104,7 @@ const Page = () => {
         console.log("New Recipe added:", newDoc);
         console.log(recipesData);
         setRecipes(recipesData);
+        setFilteredRecipes(recipesData);
         handleCloseForm();
     };
 
