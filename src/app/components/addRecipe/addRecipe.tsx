@@ -1,4 +1,3 @@
-// AddRecipeForm.tsx
 import React, { useState } from "react";
 import { Recipe } from "../../../models/recipe";
 import styles from "./addRecipe.module.css";
@@ -9,9 +8,7 @@ interface AddRecipeFormProps {
   categories: string[];
 }
 
-
-const AddRecipeForm = ({ onAddRecipe, onClose, categories}: AddRecipeFormProps) => {
-
+const AddRecipeForm = ({ onAddRecipe, onClose, categories }: AddRecipeFormProps) => {
   const [newRecipe, setNewRecipe] = useState<Partial<Recipe>>({
     title: "",
     catergory: "",
@@ -20,21 +17,41 @@ const AddRecipeForm = ({ onAddRecipe, onClose, categories}: AddRecipeFormProps) 
     image: "",
   });
 
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    console.log(`Field: ${name}, Value: ${value}`); // Debugging line
-    if(name=="category"){}
+
     if (name === "instructions" || name === "ingredients") {
       setNewRecipe({ ...newRecipe, [name]: value.split("\n") });
     } else {
       setNewRecipe({ ...newRecipe, [name]: value });
     }
-    console.log(newRecipe.catergory); // Debugging line
+
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
+  };
+
+  const validateForm = () => {
+    const newErrors: { [key: string]: string } = {};
+    if (!newRecipe.title) newErrors.title = "Title is required.";
+    if (!newRecipe.catergory) newErrors.category = "Category is required.";
+    if (!newRecipe.instructions || newRecipe.instructions.length === 0) {
+      newErrors.instructions = "At least one instruction is required.";
+    }
+    if (!newRecipe.ingredients || newRecipe.ingredients.length === 0) {
+      newErrors.ingredients = "At least one ingredient is required.";
+    }
+    if (!newRecipe.image) newErrors.image = "Image URL is required.";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleAdd = () => {
+    if (!validateForm()) return;
+
     onAddRecipe(newRecipe as Recipe);
     setNewRecipe({
       title: "",
@@ -49,7 +66,8 @@ const AddRecipeForm = ({ onAddRecipe, onClose, categories}: AddRecipeFormProps) 
   return (
     <div className={`${styles.formContainer} ${styles.formOpen}`}>
       <button onClick={onClose} className={styles.closeButton}>
-x      </button>
+        x
+      </button>
       <h2 className={styles.title}>Add New Recipe</h2>
       <input
         type="text"
@@ -57,44 +75,55 @@ x      </button>
         placeholder="Recipe Title"
         value={newRecipe.title || ""}
         onChange={handleChange}
-        className={styles.inputField}
+        className={`${styles.inputField} ${errors.title ? styles.errorField : ""}`}
       />
-<select
-  name="category"
-  value={newRecipe.catergory || ""}
-  onChange={handleChange}
-  className={styles.inputField} 
->
-  <option value="" disabled>select category</option>
-  {categories.map((category) => (
-    <option key={category} value={category}>
-      {category}
-    </option>
-  ))}
-</select>
+      {errors.title && <p className={styles.errorText}>{errors.title}</p>}
+
+      <select
+        name="category"
+        value={newRecipe.catergory || ""}
+        onChange={handleChange}
+        className={`${styles.inputField} ${errors.category ? styles.errorField : ""}`}
+      >
+        <option value="" disabled>
+          Select category
+        </option>
+        {categories.map((category) => (
+          <option key={category} value={category}>
+            {category}
+          </option>
+        ))}
+      </select>
+      {errors.category && <p className={styles.errorText}>{errors.category}</p>}
 
       <textarea
         name="instructions"
         placeholder="Instructions (one per line)"
         value={(newRecipe.instructions || []).join("\n")}
         onChange={handleChange}
-        className={styles.textArea}
+        className={`${styles.textArea} ${errors.instructions ? styles.errorField : ""}`}
       />
+      {errors.instructions && <p className={styles.errorText}>{errors.instructions}</p>}
+
       <textarea
         name="ingredients"
         placeholder="Ingredients (one per line)"
         value={(newRecipe.ingredients || []).join("\n")}
         onChange={handleChange}
-        className={styles.textArea}
+        className={`${styles.textArea} ${errors.ingredients ? styles.errorField : ""}`}
       />
+      {errors.ingredients && <p className={styles.errorText}>{errors.ingredients}</p>}
+
       <input
         type="text"
         name="image"
         placeholder="Image URL"
         value={newRecipe.image || ""}
         onChange={handleChange}
-        className={styles.inputField}
+        className={`${styles.inputField} ${errors.image ? styles.errorField : ""}`}
       />
+      {errors.image && <p className={styles.errorText}>{errors.image}</p>}
+
       <button onClick={handleAdd} className={styles.saveButton}>
         Save Recipe
       </button>
