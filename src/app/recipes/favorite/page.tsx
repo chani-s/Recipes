@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import styles from '../recipes.module.css';
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import { useObjectIdStore } from '../../services/zustand';
-import { ObjectId } from "mongodb";
+import { FaArrowRight} from 'react-icons/fa';
+import Link from 'next/link';
 
 
 const Page = () => {
@@ -18,14 +19,14 @@ const Page = () => {
     const getRecipes = async () => {
         try {
             console.log("start");
-            
+
             const favoriteRecipes = getFromStorage("favorite");
             const recipes = getFromStorage<Recipe>("recipes");
             if (favoriteRecipes && recipes) {
                 const filteredRecipes = recipes.filter(recipe => favoriteRecipes.includes(recipe._id));
                 setRecipes(filteredRecipes);
                 console.log(filteredRecipes);
-                
+
             }
             else {
                 setRecipes([]);
@@ -41,7 +42,7 @@ const Page = () => {
 
     useEffect(() => {
         console.log("kkjhhgfxfghk");
-        
+
         getRecipes();
     }, [objectIds]);
 
@@ -53,10 +54,13 @@ const Page = () => {
                 {loading ? (
                     <p>LOADING...</p>
                 ) : (
-                    <div className={styles.recipesGrid}>
-                        {recipes.map((recipe, index) => (
-                            <RecipeCard recipe={recipe} index={index} />
-                        ))}
+                    <div>
+                        <Link className="nav-link" href="/recipes"><FaArrowRight className={styles.backIcon} /></Link>
+                        <div className={styles.recipesGrid}>
+                            {recipes.map((recipe, index) => (
+                                <RecipeCard recipe={recipe} index={index} />
+                            ))}
+                        </div>
                     </div>
 
                 )}

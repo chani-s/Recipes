@@ -52,6 +52,24 @@
     margin-right: 0;
 }
 
+.heartButton{
+    border: none;
+}
+
+.heartIcon {
+    font-size: 30px;
+}
+
+.favoriteIcon {
+    color: rgb(192, 53, 76);
+}
+
+.topBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 
 .ingredientList, .instructionList {
     padding-left: 0;

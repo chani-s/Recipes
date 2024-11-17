@@ -4,13 +4,10 @@ import recipeService from "../services/recipes";
 import { Recipe } from "../../models/recipe";
 import styles from "./recipes.module.css";
 import RecipeCard from "../components/RecipeCard/RecipeCard";
-import CategoryPicker from "../components/CategoryPicker/CategoryPicker";
-import AddRecipeForm from "../components/addRecipe/addRecipe";
 import { getFromStorage, saveToStorage } from '../services/localStorage';
 import { ObjectId } from "mongodb";
 import { useObjectIdStore } from '../services/zustand';
 import Link from 'next/link';
-import { IoHeart } from "react-icons/io5";
 import Header from "../components/Header/Header";
 
 
@@ -23,6 +20,13 @@ const Page = () => {
     const [searchQuery, setSearchQuery] = useState<string>("");
     const categories = ["מנות עיקריות", "עוגיות", "תוספות", "עוגות"];
     const [isFormOpen, setIsFormOpen] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const recipesPerPage = 8;
+    const indexOfLastRecipe = currentPage * recipesPerPage;
+    const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
+    const currentRecipes = filteredRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
+
+
     const setObjectIds = useObjectIdStore((state) => state.setObjectIds);
 
     const getRecipes = async () => {
@@ -48,6 +52,17 @@ const Page = () => {
 
         }
     };
+
+    const handlePageChange = (pageNumber: number) => {
+        setCurrentPage(pageNumber);
+    };
+
+    // Calculate the total number of pages
+    const totalPages = Math.ceil(filteredRecipes.length / recipesPerPage);
+
+    // Create an array of page numbers
+    const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
+
 
     const handleCategorySelect = (category: string) => {
         setSelectedCategory(category);
@@ -95,14 +110,14 @@ const Page = () => {
     return (
         <div className={styles.pageContainer}>
             <div>
-                <Header categories={categories} 
-                handleCategory={handleCategorySelect} 
-                searchQuery={searchQuery}
-                handleSearchChange={handleSearchChange}
-                handleOpenForm={handleOpenForm} 
-                isFormOpen={isFormOpen}
-                handleAddRecipe={handleAddRecipe}
-                handleCloseForm={handleCloseForm}
+                <Header categories={categories}
+                    handleCategory={handleCategorySelect}
+                    searchQuery={searchQuery}
+                    handleSearchChange={handleSearchChange}
+                    handleOpenForm={handleOpenForm}
+                    isFormOpen={isFormOpen}
+                    handleAddRecipe={handleAddRecipe}
+                    handleCloseForm={handleCloseForm}
                 />
             </div>
 
@@ -110,8 +125,8 @@ const Page = () => {
                 <p>LOADING...</p>
             ) : (
                 <div className={styles.recipesGrid}>
-                    {filteredRecipes.length > 0 ? (
-                        filteredRecipes.map((recipe, index) => (
+                    {currentRecipes.length > 0 ? (
+                        currentRecipes.map((recipe, index) => (
                             <RecipeCard recipe={recipe} index={index} key={index} />
                         ))
                     ) : (
@@ -119,6 +134,19 @@ const Page = () => {
                     )}
                 </div>
             )}
+
+            <div className={styles.pagination}>
+                {pageNumbers.map(number => (
+                    <button
+                        key={number}
+                        onClick={() => handlePageChange(number)}
+                        className={number === currentPage ? styles.activePage : ""}
+                    >
+                        {number}
+                    </button>
+                ))}
+            </div>
+
 
         </div>
 
