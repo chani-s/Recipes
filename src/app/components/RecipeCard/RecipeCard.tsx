@@ -66,7 +66,7 @@ const RecipeCard = ({ recipe, index }: CardProps) => {
                 <h2 className={styles.recipeTitle}>{recipe.title}</h2>
                 <div className={styles.buttonsBar}>
                     <button className={styles.openButton} onClick={() => openSidebar(recipe)}>open</button>
-                    <button className={styles.starBbutton}
+                    <button className={styles.heartButton}
                         onClick={() => addOrRemoveFromFavorite(recipe._id)}>
                         {!isFavorite ? <IoHeartOutline className={styles.heartIcon} /> :
                             <IoHeart className={`${styles.heartIcon} ${styles.favoriteIcon}`}
@@ -75,7 +75,7 @@ const RecipeCard = ({ recipe, index }: CardProps) => {
             </div>
             {selectedRecipe && (
                 <div className={styles.sidebar}>
-                    <PageSidebar recipe={selectedRecipe} onClose={closeSidebar} />
+                    <PageSidebar recipe={selectedRecipe} onClose={closeSidebar} isFavorite={isFavorite} favoriteFunc={addOrRemoveFromFavorite} />
                 </div>
             )}
         </div>
