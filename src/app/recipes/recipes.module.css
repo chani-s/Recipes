@@ -5,6 +5,7 @@
   height: 100vh;
   padding: 16px;
   position: relative;
+  /* background-color: #ddd; */
 }
 
 .loading {
@@ -48,7 +49,7 @@
 }
 
 .pagination .activePage {
-  background-color: #b64952;
+  background-color: rgb(192, 53, 76);
   color: white;
 }
 
