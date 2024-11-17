@@ -21,6 +21,11 @@ interface HeaderProps {
 const Header = ({ categories, handleCategory, searchQuery, handleSearchChange, handleOpenForm, isFormOpen, handleAddRecipe, handleCloseForm }: HeaderProps) => {
     return (
         <div className={styles.sortBar}>
+            <div className={styles.icons}>
+                <Link className="nav-link" href="/recipes"><FaHome className={styles.homeIcon} /></Link>
+                <Link className="nav-link" href="/recipes/favorite"><IoHeart className={styles.heartIcon} /></Link>
+            </div>
+
             <CategoryPicker categories={categories} onCategorySelect={handleCategory} />
 
             <input
@@ -34,10 +39,7 @@ const Header = ({ categories, handleCategory, searchQuery, handleSearchChange, h
             <button onClick={handleOpenForm} className={styles.addButton}>
                 Add Recipe
             </button>
-            <div className={styles.icons}>
-                <Link className="nav-link" href="/recipes/favorite"><IoHeart className={styles.heartIcon} /></Link>
-                <Link className="nav-link" href="/recipes"><FaHome className={styles.homeIcon} /></Link>
-            </div>
+
             {isFormOpen && (
                 <AddRecipeForm onAddRecipe={handleAddRecipe} onClose={handleCloseForm} categories={categories} />
             )}
