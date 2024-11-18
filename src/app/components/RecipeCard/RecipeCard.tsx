@@ -52,33 +52,60 @@ const RecipeCard = ({ recipe, index }: CardProps) => {
     if (!recipe) return null;
 
     return (
-        <div >
-            <div
-                key={index}
-                className={styles.recipeContainer}>
-                {recipe.image && (
-                    <img
-                        src={recipe.image}
-                        alt={recipe.title}
-                        className={styles.recipeImage}
-                    />
-                )}
-                <h2 className={styles.recipeTitle}>{recipe.title}</h2>
-                <div className={styles.buttonsBar}>
-                    <button className={styles.openButton} onClick={() => openSidebar(recipe)}>open</button>
-                    <button className={styles.heartButton}
-                        onClick={() => addOrRemoveFromFavorite(recipe._id)}>
-                        {!isFavorite ? <IoHeartOutline className={styles.heartIcon} /> :
-                            <IoHeart className={`${styles.heartIcon} ${styles.favoriteIcon}`}
-                            />}</button>
-                </div>
+        // <div >
+        //     <div
+        //         key={index}
+        //         className={styles.recipeContainer}>
+        //         {recipe.image && (
+        //             <img
+        //                 src={recipe.image}
+        //                 alt={recipe.title}
+        //                 className={styles.recipeImage}
+        //             />
+        //         )}
+        //         <h2 className={styles.recipeTitle}>{recipe.title}</h2>
+        //         <div className={styles.buttonsBar}>
+        //             <button className={styles.openButton} onClick={() => openSidebar(recipe)}>open</button>
+        //             <button className={styles.heartButton}
+        //                 onClick={() => addOrRemoveFromFavorite(recipe._id)}>
+        //                 {!isFavorite ? <IoHeartOutline className={styles.heartIcon} /> :
+        //                     <IoHeart className={`${styles.heartIcon} ${styles.favoriteIcon}`}
+        //                     />}</button>
+        //         </div>
+        //     </div>
+        //     {selectedRecipe && (
+        //         <div className={styles.sidebar}>
+        //             <PageSidebar recipe={selectedRecipe} onClose={closeSidebar} isFavorite={isFavorite} favoriteFunc={addOrRemoveFromFavorite} />
+        //         </div>
+        //     )}
+        // </div>
+
+        <div key={index} className={styles.recipeContainer}>
+            <div className={styles.imageContainer}>
+                <img
+                    src={recipe.image}
+                    alt={recipe.title}
+                    className={styles.recipeImage}
+                />
             </div>
-            {selectedRecipe && (
-                <div className={styles.sidebar}>
-                    <PageSidebar recipe={selectedRecipe} onClose={closeSidebar} isFavorite={isFavorite} favoriteFunc={addOrRemoveFromFavorite} />
-                </div>
-            )}
+            <h2 className={styles.recipeTitle}>{recipe.title}</h2>
+            <div className={styles.buttonsBar}>
+                <button className={styles.openButton} onClick={() => openSidebar(recipe)}>
+                    open
+                </button>
+                <button
+                    className={styles.heartButton}
+                    onClick={() => addOrRemoveFromFavorite(recipe._id)}
+                >
+                    {!isFavorite ? (
+                        <IoHeartOutline className={styles.heartIcon} />
+                    ) : (
+                        <IoHeart className={`${styles.heartIcon} ${styles.favoriteIcon}`} />
+                    )}
+                </button>
+            </div>
         </div>
+
     )
 };
 

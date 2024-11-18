@@ -1,4 +1,4 @@
-.recipeContainer {
+/* .recipeContainer {
     display: flex;
     flex-direction: column;
     border: 1px solid #ddd;
@@ -55,7 +55,55 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
+} */
+
+.recipeContainer {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    cursor: pointer;
+    width: 250px;
+    height: 350px;
+    overflow: hidden; /* Ensure content doesn't overflow */
+  }
+  
+  .recipeContainer:hover {
+    transform: translateY(-5px);
+  }
+  
+  .imageContainer {
+    height: 65%; /* Take up 65% of the card's height */
+    width: 100%; /* Full width of the card */
+    overflow: hidden; /* Hide overflow to ensure consistent image size */
+  }
+  
+  .recipeImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Make sure the image fills the container proportionally */
+  }
+  
+  .recipeTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35%; /* Take up the remaining 35% of the card's height */
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  .buttonsBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
 
 .openButton {
     background-color: #4CAF50;
