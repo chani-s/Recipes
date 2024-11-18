@@ -80,7 +80,7 @@ const AddRecipeForm = ({ onAddRecipe, onClose, categories }: AddRecipeFormProps)
       {errors.title && <p className={styles.errorText}>{errors.title}</p>}
 
       <select
-        name="category"
+        name="catergory"
         value={newRecipe.catergory || ""}
         onChange={handleChange}
         className={`${styles.inputField} ${errors.category ? styles.errorField : ""}`}

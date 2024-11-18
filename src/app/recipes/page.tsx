@@ -89,6 +89,8 @@ const Page = () => {
         console.log("New Recipe added:", newDoc);
         console.log(recipesData);
         setRecipes(recipesData);
+        setFilteredRecipes(recipesData);
+
         handleCloseForm();
     };
 
